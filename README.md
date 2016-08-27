@@ -1,2 +1,2 @@
-# NetstorageKit-Node
-Akamai Netstorage API for Node
+# NetStorageKit-Node
+Akamai NetStorage API for Node
