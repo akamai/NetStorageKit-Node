@@ -1,10 +1,7 @@
-// $ mocha --ui tdd test_netstorage.js
-
 const assert = require('assert'),
     fs = require('fs'),
     Netstorage = require('./lib/netstorage'),
     secrets = require('./spike/secrets');
-
 
 
 var NS_HOSTNAME = "astin-nsu.akamaihd.net";
@@ -12,16 +9,13 @@ var NS_KEYNAME = "astinastin";
 var NS_KEY = secrets.key;
 var NS_CPCODE = "360949";
 
-
-describe('Netstorage test', function() {
-  
-  var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY);
-  
-  var temp_ns_dir = `/${NS_CPCODE}/nst_${Date.now()}`;
-  var temp_file = `nst_${Date.now()}.txt`;
-  var temp_ns_file = `${temp_ns_dir}/${temp_file}`;
+var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY);  
+var temp_ns_dir = `/${NS_CPCODE}/nst_${Date.now()}`;
+var temp_file = `nst_${Date.now()}.txt`;
+var temp_ns_file = `${temp_ns_dir}/${temp_file}`;
 
 
+describe('### Netstorage test ###', function() {
   after(function(done) {
     fs.unlink(temp_file, (err) => {
       if (!err) {
@@ -41,7 +35,7 @@ describe('Netstorage test', function() {
   });
 
   after(function(done) {
-    ns.delete(temp_ns_file, (data, response) => {
+    ns.delete(temp_ns_file, (error, response, body) => {
       if (response.statusCode == 200) {
         console.log(`[TEARDOWN] delete ${temp_ns_file}`);
       }
@@ -50,7 +44,7 @@ describe('Netstorage test', function() {
   });
   
   after(function(done) {
-    ns.delete(`${temp_ns_file}_lnk`, (data, response) => {
+    ns.delete(`${temp_ns_file}_lnk`, (error, response, body) => {
       if (response.statusCode == 200) {
         console.log(`[TEARDOWN] delete ${temp_ns_file}_lnk`);
       }
@@ -59,7 +53,7 @@ describe('Netstorage test', function() {
   });
 
   after(function(done) {
-    ns.delete(`${temp_ns_file}_rename`, (data, response) => {
+    ns.delete(`${temp_ns_file}_rename`, (error, response, body) => {
       if (response.statusCode == 200) {
         console.log(`[TEARDOWN] delete ${temp_ns_file}_rename`);
       }
@@ -68,7 +62,7 @@ describe('Netstorage test', function() {
   });
 
   after(function(done) {
-    ns.rmdir(temp_ns_dir, (data, response) => {
+    ns.rmdir(temp_ns_dir, (error, response, body) => {
       if (response.statusCode == 200) {
         console.log(`[TEARDOWN] rmdir ${temp_ns_dir} from local done`);
       }
@@ -80,7 +74,7 @@ describe('Netstorage test', function() {
   describe(`ns.dir("/${NS_CPCODE}", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.dir(`/${NS_CPCODE}`, (data, response) => {  
+      ns.dir(`/${NS_CPCODE}`, (error, response, body) => {  
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -90,18 +84,18 @@ describe('Netstorage test', function() {
   describe(`ns.mkdir("${temp_ns_dir}", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.mkdir(temp_ns_dir, (data, response) => {
+      ns.mkdir(temp_ns_dir, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
     });
   });
 
-  describe(`ns.upload("${temp_file}", callback);`, function() {
+  describe(`ns.upload("${temp_file}", "${temp_ns_file}" callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       fs.writeFileSync(temp_file, 'Hello, Netstorage API World!', 'utf8');
-      ns.upload(temp_file, temp_ns_file, (data, response) => {
+      ns.upload(temp_file, temp_ns_file, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -111,7 +105,7 @@ describe('Netstorage test', function() {
   describe(`ns.du("${temp_ns_dir}", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.du(temp_ns_dir, (data, response) => {
+      ns.du(temp_ns_dir, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -122,7 +116,7 @@ describe('Netstorage test', function() {
   describe(`ns.mtime("${temp_ns_file}", ${mtime_now}, callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.mtime(temp_ns_file, mtime_now, (data, response) => {
+      ns.mtime(temp_ns_file, mtime_now, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -132,7 +126,7 @@ describe('Netstorage test', function() {
   describe(`ns.stat("${temp_ns_file}", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.stat(temp_ns_file, (data, response) => {
+      ns.stat(temp_ns_file, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -142,7 +136,7 @@ describe('Netstorage test', function() {
   describe(`ns.symlink("${temp_ns_file}", "${temp_ns_file}_lnk", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.symlink(temp_ns_file, `${temp_ns_file}_lnk`, (data, response) => {
+      ns.symlink(temp_ns_file, `${temp_ns_file}_lnk`, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -152,7 +146,7 @@ describe('Netstorage test', function() {
   describe(`ns.rename("${temp_ns_file}", "${temp_ns_file}_rename", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.rename(temp_ns_file, `${temp_ns_file}_rename`, (data, response) => {
+      ns.rename(temp_ns_file, `${temp_ns_file}_rename`, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -162,7 +156,7 @@ describe('Netstorage test', function() {
   describe(`ns.download("${temp_ns_file}_rename", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.download(`${temp_ns_file}_rename`, (data, response) => {
+      ns.download(`${temp_ns_file}_rename`, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -172,7 +166,7 @@ describe('Netstorage test', function() {
   describe(`ns.delete("${temp_ns_file}_rename", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.delete(`${temp_ns_file}_rename`, (data, response) => {
+      ns.delete(`${temp_ns_file}_rename`, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -182,7 +176,7 @@ describe('Netstorage test', function() {
   describe(`ns.delete("${temp_ns_file}_lnk", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.delete(`${temp_ns_file}_lnk`, (data, response) => {
+      ns.delete(`${temp_ns_file}_lnk`, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
@@ -192,26 +186,54 @@ describe('Netstorage test', function() {
   describe(`ns.rmdir("${temp_ns_dir}", callback);`, function() {
     it('should return 200', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.rmdir(temp_ns_dir, (data, response) => {
+      ns.rmdir(temp_ns_dir, (error, response, body) => {
         assert.equal(200, response.statusCode);
         doneWrap.trigger();
       });
     });
   });
-
 });
+
+
+describe('### Error test ###', function() {
+
+  describe(`ns.dir("invalid ns path", callback);`, function() {
+    it('should get Error object: Invalid netstorage path from error.message', function(done) {
+      var doneWrap = new DoneWrap(done);
+      ns.dir("invalid ns path", (error, response, body) => {  
+        if (error) {
+          assert.equal('Invalid netstorage path', error.message);
+        }
+        doneWrap.trigger();
+      });
+    });
+  });
+
+  describe(`ns.upload("invalid local path", "${temp_ns_file}" callback);`, function() {
+    it('should get Error object', function(done) {
+      var doneWrap = new DoneWrap(done);
+      ns.upload("invalid local path", temp_ns_file, (error, response, body) => {
+        if (error) {
+          assert.equal(error instanceof Error, true);
+        }
+        doneWrap.trigger();
+      });
+    });
+  });
+  
+});
+
 
 function DoneWrap(done) {
   var self   = this;
   var called = false;
 
   this.trigger = function (params) {
-    if(called) {
+    if (called) {
         // console.warn("done has already been called");
         // console.trace();
         return;
     }
-
     done.apply(self, arguments);
     called = true;
   };
