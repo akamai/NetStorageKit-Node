@@ -1,7 +1,7 @@
 NetstorageAPI: Akamai Netstorage API for Node
 =============================================
-
-
+  
+  
 NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js with native [http module](https://nodejs.org/api/http.html).
   
   
@@ -31,7 +31,7 @@ Example
 > local_source = 'hello.txt'
 > netstorage_destination = `/#{NS_CPCODE}/hello.txt` // or `/#{NS_CPCODE}/` is same.
 >
-> ns.upload(temp_file, temp_ns_file, (error, response, body) => {
+> ns.upload(local_source, netstorage_destination, (error, response, body) => {
 ...  if (error) { // errors other than http response codes
 ...     console.log(`Got error: ${error.message}`);
 ...  }
