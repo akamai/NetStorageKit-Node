@@ -1,0 +1,18 @@
+{
+  "name": "netstorageapi",
+  "version": "0.5.0",
+  "description": "Akamai Netstorage API for Node.js",
+  "main": "./lib/netstorage.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akamai-open/NetstorageKit-Node"
+  },
+  "keywords": [
+    "netstorage",
+    "akamai",
+    "open",
+    "api"
+  ],
+  "author": "Astin Choi <asciineo@gmail.com>",
+  "license": "Apache-2.0"
+}

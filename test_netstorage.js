@@ -1,6 +1,24 @@
+// Original author: Astin Choi <achoi@akamai.com>
+
+// Copyright 2016 Akamai Technologies http://developer.akamai.com.
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+//     http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
 const assert = require('assert'),
     fs = require('fs'),
-    Netstorage = require('./lib/netstorage'),
+    // Netstorage = require('./lib/netstorage'),
+    Netstorage = require('netstorageapi'),
     secrets = require('./spike/secrets');
 
 
@@ -9,7 +27,7 @@ var NS_KEYNAME = "astinastin";
 var NS_KEY = secrets.key;
 var NS_CPCODE = "360949";
 
-var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY);  
+var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY, ssl=false);  
 var temp_ns_dir = `/${NS_CPCODE}/nst_${Date.now()}`;
 var temp_file = `nst_${Date.now()}.txt`;
 var temp_ns_file = `${temp_ns_dir}/${temp_file}`;

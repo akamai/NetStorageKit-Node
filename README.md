@@ -1,2 +1,143 @@
-# NetStorageKit-Node
-Akamai NetStorage API for Node
+NetstorageAPI: Akamai Netstorage API for Node
+=============================================
+
+
+NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js with native [http module](https://nodejs.org/api/http.html).
+  
+  
+Installation
+------------
+
+To install Netstorage API for Node:  
+
+```bash
+$ npm install --save netstorageapi
+```
+  
+  
+Example
+-------
+
+```javascript
+> const Netstorage = require('netstorageapi'),
+...  secrets = require('./spike/secrets');
+> 
+> var NS_HOSTNAME = 'astin-nsu.akamaihd.net';
+> var NS_KEYNAME = 'astinastin';
+> var NS_KEY = secrets.key; // Don't expose NS_KEY on public repository.
+> var NS_CPCODE = '360949';
+> 
+> var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY /* ,ssl=false */); // default
+> local_source = 'hello.txt'
+> netstorage_destination = `/#{NS_CPCODE}/hello.txt` // or `/#{NS_CPCODE}/` is same.
+>
+> ns.upload(temp_file, temp_ns_file, (error, response, body) => {
+...  if (error) { // errors other than http response codes
+...     console.log(`Got error: ${error.message}`);
+...  }
+...  if (response.statusCode == 200) { // http response codes: 2xx, 3xx, 4xx, 5xx
+...     console.log(`#{body}`);
+...  }
+... });
+<HTML>Request Processed</HTML> // 200 OK
+>
+```
+  
+  
+Methods
+-------
+
+```javascript
+> function callback(error, response, body) { /* do something */ }
+>
+> ns.delete(NETSTORAGE_PATH, callback);
+> ns.dir(NETSTORAGE_PATH, callback);
+> ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback);
+> ns.du(NETSTORAGE_PATH, callback);
+> ns.list(NETSTORAGE_PATH, callback);
+> ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback);
+> ns.mtime(NETSTORAGE_PATH, new Date.now(), callback);
+> ns.quick_delete(NETSTORAGE_DIR, callback); // needs to be enabled on the CP Code
+> ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback);
+> ns.rmdir(NETSTORAGE_DIR, callback); // remove empty direcoty
+> ns.stat(NETSTORAGE_PATH, callback);
+> ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback);
+> ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback);
+>  
+> // INFO: can "upload" Only a single file, not directory.
+> // WARN: can raise FILE related error in "download" and "upload",
+> //       see error object in callback.
+```
+  
+  
+Test
+----
+You can test all above methods with [Unit Test Script](https://github.com/AstinCHOI/NetStorageKit-Node/blob/master/test_netstorage.js) (NOTE: You should input NS_HOSTNAME, NS_KEYNAME, NS_KEY and NS_CPCODE in the script). It uses [Mocha](https://mochajs.org/) for the test:
+
+
+```bash
+$ npm install --global mocha
+...
+$ mocha --no-timeouts test_netstorage.js
+
+### Netstorage test ###
+  ns.dir("/360949", callback);
+    ✓ should return 200 OK (509ms)
+  ns.mkdir("/360949/nst_1473649665790", callback);
+    ✓ should return 200 OK (157ms)
+  ns.upload("nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt" callback);
+    ✓ should return 200 OK (250ms)
+  ns.du("/360949/nst_1473649665790", callback);
+    ✓ should return 200 OK (47ms)
+  ns.mtime("/360949/nst_1473649665790/nst_1473649665790.txt", 1473649665794, callback);
+    ✓ should return 200 OK (55ms)
+  ns.stat("/360949/nst_1473649665790/nst_1473649665790.txt", callback);
+    ✓ should return 200 OK (47ms)
+  ns.symlink("/360949/nst_1473649665790/nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt_lnk", callback);
+    ✓ should return 200 OK (53ms)
+  ns.rename("/360949/nst_1473649665790/nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
+    ✓ should return 200 OK (100ms)
+  ns.download("/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
+    ✓ should return 200 OK (49ms)
+  ns.delete("/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
+    ✓ should return 200 OK (63ms)
+  ns.delete("/360949/nst_1473649665790/nst_1473649665790.txt_lnk", callback);
+    ✓ should return 200 OK (51ms)
+  ns.rmdir("/360949/nst_1473649665790", callback);
+    ✓ should return 200 (54ms)
+[TEARDOWN] remove nst_1473649665790.txt from local done
+[TEARDOWN] remove nst_1473649665790.txt_rename from local done
+
+### Error test ###
+  ns.dir("invalid ns path", callback);
+    ✓ should get Error object: Invalid netstorage path from error.message
+  ns.upload("invalid local path", "/360949/nst_1473649665790/nst_1473649665790.txt" callback);
+    ✓ should get Error object
+
+
+14 passing (2s)
+```
+  
+  
+Author
+------
+
+Astin Choi (achoi@akamai.com)  
+  
+  
+License
+-------
+
+Copyright 2016 Akamai Technologies, Inc.  All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
