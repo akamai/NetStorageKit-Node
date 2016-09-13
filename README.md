@@ -1,6 +1,8 @@
-NetstorageAPI: Akamai Netstorage API for Node
-=============================================
-  
+NetstorageAPI: Akamai Netstorage API for Node.js
+================================================
+
+[![npm package](https://badge.fury.io/js/netstorageapi.svg)](https://badge.fury.io/js/netstorageapi.svg)
+
   
 NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js with native [http module](https://nodejs.org/api/http.html).
   
@@ -8,7 +10,7 @@ NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js with nati
 Installation
 ------------
 
-To install Netstorage API for Node:  
+To install Netstorage API for Node.js:  
 
 ```bash
 $ npm install --save netstorageapi
@@ -20,11 +22,10 @@ Example
 
 ```javascript
 > const Netstorage = require('netstorageapi'),
-...  secrets = require('./spike/secrets');
 > 
 > var NS_HOSTNAME = 'astin-nsu.akamaihd.net';
 > var NS_KEYNAME = 'astinastin';
-> var NS_KEY = secrets.key; // Don't expose NS_KEY on public repository.
+> var NS_KEY = 'xxxxxxxxxx'; // Don't expose NS_KEY on public repository.
 > var NS_CPCODE = '360949';
 > 
 > var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY /* ,ssl=false */); // default
@@ -110,7 +111,7 @@ $ mocha --no-timeouts test_netstorage.js
 
 ### Error test ###
   ns.dir("invalid ns path", callback);
-    ✓ should get Error object: Invalid netstorage path from error.message
+    ✓ should get Error object
   ns.upload("invalid local path", "/360949/nst_1473649665790/nst_1473649665790.txt" callback);
     ✓ should get Error object
 

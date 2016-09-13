@@ -17,8 +17,8 @@
 
 const assert = require('assert'),
     fs = require('fs'),
-    // Netstorage = require('./lib/netstorage'),
-    Netstorage = require('netstorageapi'),
+    Netstorage = require('./lib/netstorage'),
+    // Netstorage = require('netstorageapi'),
     secrets = require('./spike/secrets');
 
 
@@ -216,11 +216,11 @@ describe('### Netstorage test ###', function() {
 describe('### Error test ###', function() {
 
   describe(`ns.dir("invalid ns path", callback);`, function() {
-    it('should get Error object: Invalid netstorage path from error.message', function(done) {
+    it('should get Error object', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.dir("invalid ns path", (error, response, body) => {  
+      ns.dir("Invalid ns path", (error, response, body) => {  
         if (error) {
-          assert.equal('Invalid netstorage path', error.message);
+          assert.equal('[Netstorage Error] Invalid netstorage path', error.message);
         }
         doneWrap.trigger();
       });
@@ -230,7 +230,7 @@ describe('### Error test ###', function() {
   describe(`ns.upload("invalid local path", "${temp_ns_file}" callback);`, function() {
     it('should get Error object', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.upload("invalid local path", temp_ns_file, (error, response, body) => {
+      ns.upload("Invalid local path", temp_ns_file, (error, response, body) => {
         if (error) {
           assert.equal(error instanceof Error, true);
         }
