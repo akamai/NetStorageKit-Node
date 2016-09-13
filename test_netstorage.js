@@ -17,8 +17,8 @@
 
 const assert = require('assert'),
     fs = require('fs'),
-    Netstorage = require('./lib/netstorage'),
-    // Netstorage = require('netstorageapi'),
+    // Netstorage = require('./lib/netstorage'),
+    Netstorage = require('netstorageapi'),
     secrets = require('./spike/secrets');
 
 
