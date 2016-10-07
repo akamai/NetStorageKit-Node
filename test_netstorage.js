@@ -93,7 +93,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.dir(`/${NS_CPCODE}`, (error, response, body) => {  
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -103,7 +103,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.mkdir(temp_ns_dir, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -114,7 +114,7 @@ describe('### Netstorage test ###', function() {
       var doneWrap = new DoneWrap(done);
       fs.writeFileSync(temp_file, 'Hello, Netstorage API World!', 'utf8');
       ns.upload(temp_file, temp_ns_file, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -124,7 +124,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.du(temp_ns_dir, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -135,7 +135,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.mtime(temp_ns_file, mtime_now, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -145,7 +145,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.stat(temp_ns_file, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -155,7 +155,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.symlink(temp_ns_file, `${temp_ns_file}_lnk`, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -165,7 +165,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.rename(temp_ns_file, `${temp_ns_file}_rename`, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -175,7 +175,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.download(`${temp_ns_file}_rename`, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -185,7 +185,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.delete(`${temp_ns_file}_rename`, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -195,7 +195,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.delete(`${temp_ns_file}_lnk`, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -205,7 +205,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200', function(done) {
       var doneWrap = new DoneWrap(done);
       ns.rmdir(temp_ns_dir, (error, response, body) => {
-        assert.equal(200, response.statusCode);
+        assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
@@ -220,7 +220,7 @@ describe('### Error test ###', function() {
       var doneWrap = new DoneWrap(done);
       ns.dir("Invalid ns path", (error, response, body) => {  
         if (error) {
-          assert.equal('[Netstorage Error] Invalid netstorage path', error.message);
+          assert.equal(error.message, '[Netstorage Error] Invalid netstorage path');
         }
         doneWrap.trigger();
       });
