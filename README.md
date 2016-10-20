@@ -84,29 +84,29 @@ $ mocha --no-timeouts test_netstorage.js
 
 ### Netstorage test ###
   ns.dir("/360949", callback);
-    ✓ should return 200 OK (509ms)
+    ✓ should return 200 OK (..ms)
   ns.mkdir("/360949/nst_1473649665790", callback);
-    ✓ should return 200 OK (157ms)
+    ✓ should return 200 OK (..ms)
   ns.upload("nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt" callback);
-    ✓ should return 200 OK (250ms)
+    ✓ should return 200 OK (..ms)
   ns.du("/360949/nst_1473649665790", callback);
-    ✓ should return 200 OK (47ms)
+    ✓ should return 200 OK (..ms)
   ns.mtime("/360949/nst_1473649665790/nst_1473649665790.txt", 1473649665794, callback);
-    ✓ should return 200 OK (55ms)
+    ✓ should return 200 OK (..ms)
   ns.stat("/360949/nst_1473649665790/nst_1473649665790.txt", callback);
-    ✓ should return 200 OK (47ms)
+    ✓ should return 200 OK (..ms)
   ns.symlink("/360949/nst_1473649665790/nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt_lnk", callback);
-    ✓ should return 200 OK (53ms)
+    ✓ should return 200 OK (..ms)
   ns.rename("/360949/nst_1473649665790/nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
-    ✓ should return 200 OK (100ms)
+    ✓ should return 200 OK (..ms)
   ns.download("/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
-    ✓ should return 200 OK (49ms)
+    ✓ should return 200 OK (..ms)
   ns.delete("/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
-    ✓ should return 200 OK (63ms)
+    ✓ should return 200 OK (..ms)
   ns.delete("/360949/nst_1473649665790/nst_1473649665790.txt_lnk", callback);
-    ✓ should return 200 OK (51ms)
+    ✓ should return 200 OK (..ms)
   ns.rmdir("/360949/nst_1473649665790", callback);
-    ✓ should return 200 (54ms)
+    ✓ should return 200 OK (..ms)
 [TEARDOWN] remove nst_1473649665790.txt from local done
 [TEARDOWN] remove nst_1473649665790.txt_rename from local done
 
@@ -115,9 +115,10 @@ $ mocha --no-timeouts test_netstorage.js
     ✓ should get Error object
   ns.upload("invalid local path", "/360949/nst_1473649665790/nst_1473649665790.txt" callback);
     ✓ should get Error object
+  ns.download("/123456/directory/", "nst_1476971428611.txt" callback);
+    ✓ should get Error object
 
-
-14 passing (2s)
+15 passing (..s)
 ```
   
   

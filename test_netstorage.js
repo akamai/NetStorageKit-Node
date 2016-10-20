@@ -238,6 +238,18 @@ describe('### Error test ###', function() {
       });
     });
   });
+
+  describe(`ns.download("/123456/directory/", "${temp_file}" callback);`, function() {
+    it('should get Error object', function(done) {
+      var doneWrap = new DoneWrap(done);
+      ns.upload("/123456/directory/", temp_file, (error, response, body) => {
+        if (error) {
+          assert.equal(error instanceof Error, true);
+        }
+        doneWrap.trigger();
+      });
+    });
+  });
   
 });
 
