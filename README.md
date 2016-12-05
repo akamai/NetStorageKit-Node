@@ -56,7 +56,6 @@ Methods
 > ns.dir(NETSTORAGE_PATH, callback);
 > ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback);
 > ns.du(NETSTORAGE_PATH, callback);
-> ns.list(NETSTORAGE_PATH, callback);
 > ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback);
 > ns.mtime(NETSTORAGE_PATH, new Date.now(), callback);
 > ns.quick_delete(NETSTORAGE_DIR, callback); // needs to be enabled on the CP Code
