@@ -17,14 +17,15 @@
 
 const assert = require('assert'),
     fs = require('fs'),
-    // Netstorage = require('./lib/netstorage'),
-    Netstorage = require('netstorageapi'),
-    secrets = require('./spike/secrets');
+    Netstorage = require('./lib/netstorage'),
+    // Netstorage = require('netstorageapi'),
+    // secrets = require('./spike/secrets'); 
 
 
 var NS_HOSTNAME = "astin-nsu.akamaihd.net";
-var NS_KEYNAME = "astinastin";
-var NS_KEY = secrets.key;
+var NS_KEYNAME = "astinapi";
+// var NS_KEY = secrets.key;
+var NS_KEY = process.env.NS_KEY;
 var NS_CPCODE = "360949";
 
 var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY, ssl=false);  

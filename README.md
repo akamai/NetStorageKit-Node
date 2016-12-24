@@ -25,7 +25,7 @@ Example
 > const Netstorage = require('netstorageapi'),
 > 
 > var NS_HOSTNAME = 'astin-nsu.akamaihd.net';
-> var NS_KEYNAME = 'astinastin';
+> var NS_KEYNAME = 'astinapi';
 > var NS_KEY = 'xxxxxxxxxx'; // Don't expose NS_KEY on public repository.
 > var NS_CPCODE = '360949';
 > 
