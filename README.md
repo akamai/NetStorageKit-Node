@@ -4,10 +4,10 @@ NetstorageAPI: Akamai Netstorage API for Node.js
 [![npm package](https://badge.fury.io/js/netstorageapi.svg)](https://badge.fury.io/js/netstorageapi)
 [![Build Status](https://travis-ci.org/akamai-open/NetStorageKit-Node.svg?branch=master)](https://travis-ci.org/akamai-open/NetStorageKit-Node)
 [![License](http://img.shields.io/:license-apache-blue.svg)](https://github.com/akamai-open/NetStorageKit-Node/blob/master/LICENSE)
-
+  
 [![npm package](https://nodei.co/npm/netstorageapi.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/netstorageapi/)
   
-NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js (4.x-6.x) with native [http module](https://nodejs.org/api/http.html).
+NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js 4.0+ with native [http module](https://nodejs.org/api/http.html).
   
   
 Installation
