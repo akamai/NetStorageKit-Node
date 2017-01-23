@@ -16,10 +16,10 @@
 
 
 const assert = require('assert'),
-    fs = require('fs'),
-    Netstorage = require('../lib/netstorage');
-    // Netstorage = require('netstorageapi'),
-    // secrets = require('./spike/secrets');
+  fs = require('fs'),
+  Netstorage = require('../lib/netstorage');
+// Netstorage = require('netstorageapi'),
+// secrets = require('./spike/secrets');
 
 const config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
 var NS_HOSTNAME = config.NS_HOSTNAME;
@@ -27,196 +27,144 @@ var NS_KEYNAME = config.NS_KEYNAME;
 var NS_KEY = config.NS_KEY;
 var NS_CPCODE = config.NS_CPCODE;
 
-var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY, ssl=false);
+var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY, true);
 var temp_ns_dir = `/${NS_CPCODE}/nst_${Date.now()}`;
 var temp_file = `nst_${Date.now()}.txt`;
 var temp_ns_file = `${temp_ns_dir}/${temp_file}`;
 
 
 describe('### Netstorage test ###', function() {
+  this.slow(5000)
   after(function(done) {
-    fs.unlink(temp_file, (err) => {
-      if (!err) {
-        console.log(`[TEARDOWN] remove ${temp_file} from local done`);
-      }
+    try {
+      fs.unlinkSync(`${__dirname}/${temp_file}`);
+      fs.unlinkSync(`${__dirname}/../${temp_file}_rename`)
+    } catch (err) {
+      console.log(err)
+    } finally {
       done();
-    });
-  });
+    }
 
-  after(function(done) {
-    fs.unlink(`${temp_file}_rename`, (err) => {
-      if (!err) {
-        console.log(`[TEARDOWN] remove ${temp_file}_rename from local done`);
-      }
-      done();
-    });
   });
-
-  after(function(done) {
-    ns.delete(temp_ns_file, (error, response, body) => {
-      if (response.statusCode == 200) {
-        console.log(`[TEARDOWN] delete ${temp_ns_file}`);
-      }
-      done();
-    });
-  });
-
-  after(function(done) {
-    ns.delete(`${temp_ns_file}_lnk`, (error, response, body) => {
-      if (response.statusCode == 200) {
-        console.log(`[TEARDOWN] delete ${temp_ns_file}_lnk`);
-      }
-      done();
-    });
-  });
-
-  after(function(done) {
-    ns.delete(`${temp_ns_file}_rename`, (error, response, body) => {
-      if (response.statusCode == 200) {
-        console.log(`[TEARDOWN] delete ${temp_ns_file}_rename`);
-      }
-      done();
-    });
-  });
-
-  after(function(done) {
-    ns.rmdir(temp_ns_dir, (error, response, body) => {
-      if (response.statusCode == 200) {
-        console.log(`[TEARDOWN] rmdir ${temp_ns_dir} from local done`);
-      }
-      done();
-    });
-  });
-
 
   describe(`ns.dir("/${NS_CPCODE}", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.dir(`/${NS_CPCODE}`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        return done()
       });
     });
   });
 
-  describe(`ns.list("/${NS_CPCODE}", callback);`, function() {
+  describe.skip(`ns.list("/${NS_CPCODE}", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.list(`/${NS_CPCODE}`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.mkdir("${temp_ns_dir}", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.mkdir(temp_ns_dir, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
-  describe(`ns.upload("${temp_file}", "${temp_ns_file}" callback);`, function() {
+  describe(`ns.upload("${__dirname}/${temp_file}", "${temp_ns_file}", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
-      fs.writeFileSync(temp_file, 'Hello, Netstorage API World!', 'utf8');
-      ns.upload(temp_file, temp_ns_file, (error, response, body) => {
+      fs.writeFileSync(`${__dirname}/${temp_file}`, 'Hello, Netstorage API World!', 'utf8');
+      ns.upload(`${__dirname}/${temp_file}`, temp_ns_file, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.du("${temp_ns_dir}", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.du(temp_ns_dir, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
-  var mtime_now = Date.now();
+  var mtime_now = Math.floor(new Date().getTime() / 1000);
   describe(`ns.mtime("${temp_ns_file}", ${mtime_now}, callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.mtime(temp_ns_file, mtime_now, (error, response, body) => {
+        if (error) {
+          throw error
+        }
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.stat("${temp_ns_file}", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.stat(temp_ns_file, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.symlink("${temp_ns_file}", "${temp_ns_file}_lnk", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.symlink(temp_ns_file, `${temp_ns_file}_lnk`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.rename("${temp_ns_file}", "${temp_ns_file}_rename", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.rename(temp_ns_file, `${temp_ns_file}_rename`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.download("${temp_ns_file}_rename", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.download(`${temp_ns_file}_rename`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.delete("${temp_ns_file}_rename", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.delete(`${temp_ns_file}_rename`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.delete("${temp_ns_file}_lnk", callback);`, function() {
     it('should return 200 OK', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.delete(`${temp_ns_file}_lnk`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.rmdir("${temp_ns_dir}", callback);`, function() {
     it('should return 200', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.rmdir(temp_ns_dir, (error, response, body) => {
         assert.equal(response.statusCode, 200);
-        doneWrap.trigger();
+        done();
       });
     });
   });
@@ -227,48 +175,44 @@ describe('### Error test ###', function() {
 
   describe(`ns.dir("invalid ns path", callback);`, function() {
     it('should get Error object', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.dir("Invalid ns path", (error, response, body) => {
         if (error) {
           assert.equal(error.message, '[Netstorage Error] Invalid netstorage path');
         }
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.list("invalid ns path", callback);`, function() {
     it('should get Error object', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.list("Invalid ns path", (error, response, body) => {
         if (error) {
           assert.equal(error.message, '[Netstorage Error] Invalid netstorage path');
         }
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
   describe(`ns.upload("invalid local path", "${temp_ns_file}" callback);`, function() {
     it('should get Error object', function(done) {
-      var doneWrap = new DoneWrap(done);
       ns.upload("Invalid local path", temp_ns_file, (error, response, body) => {
         if (error) {
           assert.equal(error instanceof Error, true);
         }
-        doneWrap.trigger();
+        done();
       });
     });
   });
 
-  describe(`ns.download("/123456/directory/", "${temp_file}" callback);`, function() {
+  describe(`ns.download("/123456/directory/", "${__dirname}/${temp_file}" callback);`, function() {
     it('should get Error object', function(done) {
-      var doneWrap = new DoneWrap(done);
-      ns.upload("/123456/directory/", temp_file, (error, response, body) => {
+      ns.upload("/123456/directory/", `${__dirname}/${temp_file}`, (error, response, body) => {
         if (error) {
           assert.equal(error instanceof Error, true);
         }
-        doneWrap.trigger();
+        done();
       });
     });
   });
@@ -276,17 +220,17 @@ describe('### Error test ###', function() {
 });
 
 
-function DoneWrap(done) {
-  var self   = this;
-  var called = false;
-
-  this.trigger = function (params) {
-    if (called) {
-        // console.warn("done has already been called");
-        // console.trace();
-        return;
-    }
-    done.apply(self, arguments);
-    called = true;
-  };
-}
+// function DoneWrap(done) {
+//   var self   = this;
+//   var called = false;
+//
+//   this.trigger = function (params) {
+//     if (called) {
+//         // console.warn("done has already been called");
+//         // console.trace();
+//         return;
+//     }
+//     done.apply(self, arguments);
+//     called = true;
+//   };
+// }
