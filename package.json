@@ -6,6 +6,9 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --reporter spec --no-timeouts --ui bdd test/test_*"
   },
+  "pre-commit": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/akamai-open/NetstorageKit-Node"
@@ -19,6 +22,7 @@
   "author": "Astin Choi <asciineo@gmail.com>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "precommit": "^1.2.2"
   }
 }
