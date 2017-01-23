@@ -17,18 +17,17 @@
 
 const assert = require('assert'),
     fs = require('fs'),
-    Netstorage = require('./lib/netstorage');
+    Netstorage = require('../lib/netstorage');
     // Netstorage = require('netstorageapi'),
-    // secrets = require('./spike/secrets'); 
+    // secrets = require('./spike/secrets');
 
+const config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
+var NS_HOSTNAME = config.NS_HOSTNAME;
+var NS_KEYNAME = config.NS_KEYNAME;
+var NS_KEY = config.NS_KEY;
+var NS_CPCODE = config.NS_CPCODE;
 
-var NS_HOSTNAME = "astin-nsu.akamaihd.net";
-var NS_KEYNAME = "astinapi";
-// var NS_KEY = secrets.key;
-var NS_KEY = process.env.NS_KEY;
-var NS_CPCODE = "360949";
-
-var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY, ssl=false);  
+var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY, ssl=false);
 var temp_ns_dir = `/${NS_CPCODE}/nst_${Date.now()}`;
 var temp_file = `nst_${Date.now()}.txt`;
 var temp_ns_file = `${temp_ns_dir}/${temp_file}`;
@@ -38,7 +37,7 @@ describe('### Netstorage test ###', function() {
   after(function(done) {
     fs.unlink(temp_file, (err) => {
       if (!err) {
-        console.log(`[TEARDOWN] remove ${temp_file} from local done`); 
+        console.log(`[TEARDOWN] remove ${temp_file} from local done`);
       }
       done();
     });
@@ -61,7 +60,7 @@ describe('### Netstorage test ###', function() {
       done();
     });
   });
-  
+
   after(function(done) {
     ns.delete(`${temp_ns_file}_lnk`, (error, response, body) => {
       if (response.statusCode == 200) {
@@ -93,13 +92,23 @@ describe('### Netstorage test ###', function() {
   describe(`ns.dir("/${NS_CPCODE}", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.dir(`/${NS_CPCODE}`, (error, response, body) => {  
+      ns.dir(`/${NS_CPCODE}`, (error, response, body) => {
         assert.equal(response.statusCode, 200);
         doneWrap.trigger();
       });
     });
   });
-  
+
+  describe(`ns.list("/${NS_CPCODE}", callback);`, function() {
+    it('should return 200 OK', function(done) {
+      var doneWrap = new DoneWrap(done);
+      ns.list(`/${NS_CPCODE}`, (error, response, body) => {
+        assert.equal(response.statusCode, 200);
+        doneWrap.trigger();
+      });
+    });
+  });
+
   describe(`ns.mkdir("${temp_ns_dir}", callback);`, function() {
     it('should return 200 OK', function(done) {
       var doneWrap = new DoneWrap(done);
@@ -219,7 +228,19 @@ describe('### Error test ###', function() {
   describe(`ns.dir("invalid ns path", callback);`, function() {
     it('should get Error object', function(done) {
       var doneWrap = new DoneWrap(done);
-      ns.dir("Invalid ns path", (error, response, body) => {  
+      ns.dir("Invalid ns path", (error, response, body) => {
+        if (error) {
+          assert.equal(error.message, '[Netstorage Error] Invalid netstorage path');
+        }
+        doneWrap.trigger();
+      });
+    });
+  });
+
+  describe(`ns.list("invalid ns path", callback);`, function() {
+    it('should get Error object', function(done) {
+      var doneWrap = new DoneWrap(done);
+      ns.list("Invalid ns path", (error, response, body) => {
         if (error) {
           assert.equal(error.message, '[Netstorage Error] Invalid netstorage path');
         }
@@ -251,7 +272,7 @@ describe('### Error test ###', function() {
       });
     });
   });
-  
+
 });
 
 
