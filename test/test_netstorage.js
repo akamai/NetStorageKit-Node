@@ -31,7 +31,7 @@ var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY, true);
 var temp_ns_dir = `/${NS_CPCODE}/nst_${Date.now()}`;
 var temp_file = `nst_${Date.now()}.txt`;
 var temp_ns_file = `${temp_ns_dir}/${temp_file}`;
-
+const mtime_now = Math.floor(new Date().getTime() / 1000);
 
 describe('### Netstorage test ###', function() {
   this.slow(5000)
@@ -56,9 +56,9 @@ describe('### Netstorage test ###', function() {
     });
   });
 
-  describe.skip(`ns.list("/${NS_CPCODE}", callback);`, function() {
+  describe(`ns.list("/${NS_CPCODE}", { "max_entries": 5 }, callback);`, function() {
     it('should return 200 OK', function(done) {
-      ns.list(`/${NS_CPCODE}`, (error, response, body) => {
+      ns.list(`/${NS_CPCODE}`, { "max_entries": 5 }, (error, response, body) => {
         assert.equal(response.statusCode, 200);
         done();
       });
@@ -93,7 +93,6 @@ describe('### Netstorage test ###', function() {
     });
   });
 
-  var mtime_now = Math.floor(new Date().getTime() / 1000);
   describe(`ns.mtime("${temp_ns_file}", ${mtime_now}, callback);`, function() {
     it('should return 200 OK', function(done) {
       ns.mtime(temp_ns_file, mtime_now, (error, response, body) => {
@@ -184,9 +183,20 @@ describe('### Error test ###', function() {
     });
   });
 
-  describe(`ns.list("invalid ns path", callback);`, function() {
+  describe(`ns.list("invalid ns path", { "max_entries": 5 }, callback);`, function() {
     it('should get Error object', function(done) {
-      ns.list("Invalid ns path", (error, response, body) => {
+      ns.list("Invalid ns path", { "max_entries": 5 }, (error, response, body) => {
+        if (error) {
+          assert.equal(error.message, '[Netstorage Error] Invalid netstorage path');
+        }
+        done();
+      });
+    });
+  });
+
+  describe(`ns.list("/${NS_CPCODE}", { badObj: true }, callback);`, function() {
+    it('should get Error object', function(done) {
+      ns.list(`/${NS_CPCODE}`, { "max_entries": 5 }, (error, response, body) => {
         if (error) {
           assert.equal(error.message, '[Netstorage Error] Invalid netstorage path');
         }
