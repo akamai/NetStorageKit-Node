@@ -23,7 +23,7 @@ var config = {}
 if (process.env.TEST_MODE === 'LOCAL') {
   config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
 } else {
-  config = { hostname: 'astin-nsu.akamaihd.net', key: process.env.NS_KEY, keyName: 'astinapi', cpCode: '360949' , ssl: true }
+  config = { hostname: process.env.NS_HOST, key: process.env.NS_KEY, keyName: process.env.NS_KEYNAME, cpCode: process.env.NS_CPCODE , ssl: true }
 }
 
 var ns = new Netstorage(config)

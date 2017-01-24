@@ -29,4 +29,7 @@ install:
 
 script:
   - export NS_KEY=$NS_KEY
+  - export NS_KEYNAME=$NS_KEYNAME
+  - export NS_HOST=$NS_HOST
+  - export NS_CPCODE=$NS_CPCODE
   - mocha --no-timeouts test/test-netstorage.js
