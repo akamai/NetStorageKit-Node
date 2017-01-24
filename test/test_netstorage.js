@@ -60,6 +60,7 @@ describe('### Netstorage test ###', function() {
     it('should return 200 OK', function(done) {
       ns.list(`/${NS_CPCODE}`, { "max_entries": 5 }, (error, response, body) => {
         assert.equal(response.statusCode, 200);
+        assert.equal(body.list.file.length, 5);
         done();
       });
     });
