@@ -1,0 +1,6 @@
+{
+  "NS_HOSTNAME": "api-hostname.akamaihd.net",
+  "NS_KEYNAME": "key_name",
+  "NS_KEY": "long_key_string",
+  "NS_CPCODE": "cp_code"
+}
