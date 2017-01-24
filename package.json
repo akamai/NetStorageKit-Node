@@ -4,7 +4,7 @@
   "description": "Akamai Netstorage API for Node.js",
   "main": "./lib/netstorage.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter spec --no-timeouts --ui bdd test/test_*"
+    "test": "./node_modules/mocha/bin/mocha --reporter spec --no-timeouts --ui bdd test/test-*"
   },
   "pre-commit": [
     "test"
@@ -22,6 +22,7 @@
   "author": "Astin Choi <asciineo@gmail.com>",
   "license": "Apache-2.0",
   "devDependencies": {
+    "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "pre-commit": "^1.2.2"
   },
