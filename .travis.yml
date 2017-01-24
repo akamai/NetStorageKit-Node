@@ -24,9 +24,9 @@ env:
   global:
     - secure: GrkVquuYFffXmm+y+PzGl10BygFkRTKhpWigOoZJ+xhO4lrTknGKZt9NI34qYF6Vpb/8kCROyF81rANtjmzOIu77XKoKQPDyKAs+71YqKL5GXwPW3bw7/mQ+regRbPuMVpOJ0i9PBy/YfggJ2ZLKXiKq1wBXbhRE8adjURHgvUMIcZ5zVvR5XM/aWNViZh3ruERss2zH5N4L/9+sf10Qmn7pky/GuOvt++RAjC6Kn6YtuA+2zZP8yBwumj5r9Zz8uzC0sc1OYqJngcOeo4CTQsabeAXWWyzBUJzZjVjCPuca7HNo84cnBUgk7r1N4i57Toq7qwcgxnwNtMejtiMwud4UKGWpfwCyNK++IGiRapJ/ATZAOrbDHx/CXcGaBwaV1OvuC+A7VpPtDou4j/nG/mkWz0cNK6OMzMxa7LkZYfiqEaVzDdh+ONovqkgnDEVkbY6iBGk3NAxECDT/2d1ZQSG5Pbj89t7rLvksIrGiCvo8yic6ktGyYJ7nH3e4kzrQgZY4os1b1yg6G14Bus7vJKGfeKWuG49dY2lrlIJvushY1xAeeyJ7ppcGfy+PGvCoe1KeKsUKGzuPicAxm9NttxQbdV8hJB640iQFtFNs232x1K5dCHfYMYSMe+/aGwnxyhLrAAM2n/4M6bEgt9+Z4gChnQK9/gd0RCB4zL5K/g4=
 
-install: 
+install:
     npm install --global mocha
 
 script:
   - export NS_KEY=$NS_KEY
-  - mocha --no-timeouts test_netstorage.js
+  - mocha --no-timeouts test/test-netstorage.js

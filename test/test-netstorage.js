@@ -19,8 +19,13 @@ const assert = require('assert')
 const fs = require('fs')
 const Netstorage = require('../lib/netstorage')
 const expect = require('chai').expect
+var config = {}
+if (process.env.TEST_MODE === 'LOCAL') {
+  config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
+} else {
+  config = { hostname: 'astin-nsu.akamaihd.net', key: process.env.NS_KEY, keyName: 'astinapi', cpCode: '360949' , ssl: true }
+}
 
-const config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
 var ns = new Netstorage(config)
 var temp_ns_dir = `/${config.cpCode}/nst_${Date.now()}`
 var temp_file = `nst_${Date.now()}.txt`
@@ -167,7 +172,7 @@ describe('### Netstorage test ###', function() {
 
 
 describe('### Error test ###', function() {
-
+  this.slow(500)
   describe(`ns.dir('invalid ns path', callback);`, function() {
     it('should get Error object', function(done) {
       ns.dir('Invalid ns path', (error, response, body) => {
