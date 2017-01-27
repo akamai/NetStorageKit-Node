@@ -22,15 +22,15 @@ node_js:
 
 env:
   global:
-    - secure: GrkVquuYFffXmm+y+PzGl10BygFkRTKhpWigOoZJ+xhO4lrTknGKZt9NI34qYF6Vpb/8kCROyF81rANtjmzOIu77XKoKQPDyKAs+71YqKL5GXwPW3bw7/mQ+regRbPuMVpOJ0i9PBy/YfggJ2ZLKXiKq1wBXbhRE8adjURHgvUMIcZ5zVvR5XM/aWNViZh3ruERss2zH5N4L/9+sf10Qmn7pky/GuOvt++RAjC6Kn6YtuA+2zZP8yBwumj5r9Zz8uzC0sc1OYqJngcOeo4CTQsabeAXWWyzBUJzZjVjCPuca7HNo84cnBUgk7r1N4i57Toq7qwcgxnwNtMejtiMwud4UKGWpfwCyNK++IGiRapJ/ATZAOrbDHx/CXcGaBwaV1OvuC+A7VpPtDou4j/nG/mkWz0cNK6OMzMxa7LkZYfiqEaVzDdh+ONovqkgnDEVkbY6iBGk3NAxECDT/2d1ZQSG5Pbj89t7rLvksIrGiCvo8yic6ktGyYJ7nH3e4kzrQgZY4os1b1yg6G14Bus7vJKGfeKWuG49dY2lrlIJvushY1xAeeyJ7ppcGfy+PGvCoe1KeKsUKGzuPicAxm9NttxQbdV8hJB640iQFtFNs232x1K5dCHfYMYSMe+/aGwnxyhLrAAM2n/4M6bEgt9+Z4gChnQK9/gd0RCB4zL5K/g4=
+    - secure: hIjLJ/GFOC4XWTu4pAcrnaSsbLeDO4/4CpYPxqaTwx9RBVySVp2Um1BaNRrL3NMyEbxp2wWRltffslD1O1jtit7vc84VIjugo9ngcb/GXuWubGFML8XLMVYYyf/SZNNUNdEnkxzm0Zo1a4s9JDBaqtFPS+jUDimjA+jroWuddTN+QBX2iTTvHwoPsR6zUUqrqAChXIhnigE+WPTK4rKPQtgVaw4wgG7ieqZYP8pzjF7cQVS1JZzvSe+Pu0ONDodxyp8ZAuRpSxS7qHyDxkTAbTdoWYKnmcoHjQei32Hke2JsCixj3UuIK/NhjoB+3mFs04Z8Tq5GDCAYbxq3L9OiaH0FxO8C1sXabwT3FUScH+VCrVeiH13OO425y3g54YDPKhVEJ4/X1U4jVd9zTtMK3j99hduiy3f6F4cL5mpE3h1YtmGUa/M4uBgaU80j6i9MgSJxU/iFibYD0gxnhTKjfhPBZw/RZTZ7/V2PHwXho0/9W1fHv3KLnri0GHuKbRcSsxMQJPiCwVJ4tEYZXIyZl8/FlSbwba67Z+7vLIWDfHKvxwzAqqK2XZR9qWL+v8WELf2INejPXfFDUFsicFaMO6nplzi850wR3mPi3VOcDllOWLL3hCn3PwQpxqXZ3tMHCYIavAZ8aRUa+T1iKvXjVovgLyJb2AAI7GtHZWzt6PI=
 
 install:
     npm install --global mocha
 
 script:
-  - export NS_KEY=$NS_KEY
-  - export NS_KEYNAME=$NS_KEYNAME
   - export NS_HOST=$NS_HOST
+  - export NS_KEYNAME=$NS_KEYNAME
+  - export NS_KEY=$NS_KEY
   - export NS_CPCODE=$NS_CPCODE
   - npm install
   - mocha --no-timeouts test/test-netstorage.js

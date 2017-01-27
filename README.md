@@ -24,9 +24,11 @@ Example
 -------
 
 ```javascript
-> const Netstorage = require('netstorageapi'),
+> const Netstorage = require('netstorageapi')
 >
-> const config = { hostname: 'astin-nsu.akamaihd.net', keyName: 'astinapi', key: 'xxxxxxxxxx', cpCode: '360949', ssl: true } // Don't expose NS_KEY on public repository.
+> const config = { hostname: 'astinobj-nsu.akamaihd.net', keyName: 'astinobj', key: 'xxxxxxxxxx', cpCode: '407617', ssl: false }
+> // Don't expose KEY on your public repository.
+> // Default SSL value is FALSE
 > var ns = new Netstorage(config);
 > local_source = 'hello.txt'
 > netstorage_destination = `/${config.cpCode}/hello.txt` // or `/${config.cpCode}/` is same.
@@ -36,10 +38,10 @@ Example
 ...     console.log(`Got error: ${error.message}`);
 ...  }
 ...  if (response.statusCode == 200) { // http response codes: 2xx, 3xx, 4xx, 5xx
-...     console.log(`#{body}`);
+...     // do something
+...     // body returns json type {}
 ...  }
 ... });
-<HTML>Request Processed</HTML> // 200 OK
 >
 ```
 
@@ -81,42 +83,47 @@ $ npm install --global mocha
 $ mocha --no-timeouts test_netstorage.js
 
 ### Netstorage test ###
-  ns.dir("/360949", callback);
-    ✓ should return 200 OK (..ms)
-  ns.mkdir("/360949/nst_1473649665790", callback);
-    ✓ should return 200 OK (..ms)
-  ns.upload("nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt" callback);
-    ✓ should return 200 OK (..ms)
-  ns.du("/360949/nst_1473649665790", callback);
-    ✓ should return 200 OK (..ms)
-  ns.mtime("/360949/nst_1473649665790/nst_1473649665790.txt", 1473649665794, callback);
-    ✓ should return 200 OK (..ms)
-  ns.stat("/360949/nst_1473649665790/nst_1473649665790.txt", callback);
-    ✓ should return 200 OK (..ms)
-  ns.symlink("/360949/nst_1473649665790/nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt_lnk", callback);
-    ✓ should return 200 OK (..ms)
-  ns.rename("/360949/nst_1473649665790/nst_1473649665790.txt", "/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
-    ✓ should return 200 OK (..ms)
-  ns.download("/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
-    ✓ should return 200 OK (..ms)
-  ns.delete("/360949/nst_1473649665790/nst_1473649665790.txt_rename", callback);
-    ✓ should return 200 OK (..ms)
-  ns.delete("/360949/nst_1473649665790/nst_1473649665790.txt_lnk", callback);
-    ✓ should return 200 OK (..ms)
-  ns.rmdir("/360949/nst_1473649665790", callback);
-    ✓ should return 200 OK (..ms)
-[TEARDOWN] remove nst_1473649665790.txt from local done
-[TEARDOWN] remove nst_1473649665790.txt_rename from local done
+  ns.dir("/407617", callback);
+    ✓ should return 200 OK
+  ns.list("/407617", { "max_entries": 5 }, callback);
+    ✓ should return 200 OK
+  ns.mkdir("/407617/nst_1485516660306", callback);
+    ✓ should return 200 OK
+  ns.upload("/Users/achoi/Projects/NetStorageKit-Node/test/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt", callback);
+    ✓ should return 200 OK
+  ns.du("/407617/nst_1485516660306", callback);
+    ✓ should return 200 OK
+  ns.mtime("/407617/nst_1485516660306/nst_1485516660306.txt", 1485516660, callback);
+    ✓ should return 200 OK
+  ns.stat("/407617/nst_1485516660306/nst_1485516660306.txt", callback);
+    ✓ should return 200 OK
+  ns.symlink("/407617/nst_1485516660306/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt_lnk", callback);
+    ✓ should return 200 OK
+  ns.rename("/407617/nst_1485516660306/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
+    ✓ should return 200 OK
+  ns.download("/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
+    ✓ should return 200 OK
+  ns.delete("/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
+    ✓ should return 200 OK
+  ns.delete("/407617/nst_1485516660306/nst_1485516660306.txt_lnk", callback);
+    ✓ should return 200 OK
+  ns.rmdir("/407617/nst_1485516660306", callback);
+    ✓ should return 200
 
 ### Error test ###
-  ns.dir("invalid ns path", callback);
+  ns.dir('invalid ns path', callback);
     ✓ should get Error object
-  ns.upload("invalid local path", "/360949/nst_1473649665790/nst_1473649665790.txt" callback);
+  ns.list('invalid ns path', { "max_entries": 5 }, callback);
     ✓ should get Error object
-  ns.download("/123456/directory/", "nst_1476971428611.txt" callback);
+  ns.list("/407617", { badObj: true }, callback);
+    ✓ should get Error object
+  ns.upload("invalid local path", "/407617/nst_1485516660306/nst_1485516660306.txt" callback);
+    ✓ should get Error object
+  ns.download("/123456/directory/", "/Users/achoi/Projects/NetStorageKit-Node/test/nst_1485516660306.txt" callback);
     ✓ should get Error object
 
-15 passing (..s)
+
+18 passing (..s)
 ```
 
 
