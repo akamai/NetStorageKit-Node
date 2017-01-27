@@ -39,3 +39,9 @@ jspm_packages
 # Others
 .DS_Store
 spike/
+
+# API Secrets
+test/api-config.json
+
+# Testing js file
+testing.js

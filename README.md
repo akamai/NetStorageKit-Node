@@ -4,12 +4,12 @@ NetstorageAPI: Akamai Netstorage API for Node.js
 [![npm package](https://badge.fury.io/js/netstorageapi.svg)](https://badge.fury.io/js/netstorageapi)
 [![Build Status](https://travis-ci.org/akamai-open/NetStorageKit-Node.svg?branch=master)](https://travis-ci.org/akamai-open/NetStorageKit-Node)
 [![License](http://img.shields.io/:license-apache-blue.svg)](https://github.com/akamai-open/NetStorageKit-Node/blob/master/LICENSE)
-  
+
 [![npm package](https://nodei.co/npm/netstorageapi.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/netstorageapi/)
-  
+
 NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js 4.0+ with native [http module](https://nodejs.org/api/http.html).
-  
-  
+
+
 Installation
 ------------
 
@@ -18,22 +18,18 @@ To install Netstorage API for Node.js:
 ```bash
 $ npm install --save netstorageapi
 ```
-  
-  
+
+
 Example
 -------
 
 ```javascript
 > const Netstorage = require('netstorageapi'),
-> 
-> var NS_HOSTNAME = 'astin-nsu.akamaihd.net';
-> var NS_KEYNAME = 'astinapi';
-> var NS_KEY = 'xxxxxxxxxx'; // Don't expose NS_KEY on public repository.
-> var NS_CPCODE = '360949';
-> 
-> var ns = new Netstorage(NS_HOSTNAME, NS_KEYNAME, NS_KEY /* ,ssl=false */); // default
+>
+> const config = { hostname: 'astin-nsu.akamaihd.net', keyName: 'astinapi', key: 'xxxxxxxxxx', cpCode: '360949', ssl: true } // Don't expose NS_KEY on public repository.
+> var ns = new Netstorage(config);
 > local_source = 'hello.txt'
-> netstorage_destination = `/#{NS_CPCODE}/hello.txt` // or `/#{NS_CPCODE}/` is same.
+> netstorage_destination = `/${config.cpCode}/hello.txt` // or `/${config.cpCode}/` is same.
 >
 > ns.upload(local_source, netstorage_destination, (error, response, body) => {
 ...  if (error) { // errors other than http response codes
@@ -46,8 +42,8 @@ Example
 <HTML>Request Processed</HTML> // 200 OK
 >
 ```
-  
-  
+
+
 Methods
 -------
 
@@ -56,6 +52,7 @@ Methods
 >
 > ns.delete(NETSTORAGE_PATH, callback);
 > ns.dir(NETSTORAGE_PATH, callback);
+> ns.list(NETSTORAGE_PATH, ACTIONS_OBJ, callback);
 > ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback);
 > ns.du(NETSTORAGE_PATH, callback);
 > ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback);
@@ -71,8 +68,8 @@ Methods
 > // WARN: can raise FILE related error in "download" and "upload",
 > //       see error object in callback.
 ```
-  
-  
+
+
 Test
 ----
 You can test all above methods with [Unit Test Script](https://github.com/AstinCHOI/NetStorageKit-Node/blob/master/test_netstorage.js) (NOTE: You should input NS_HOSTNAME, NS_KEYNAME, NS_KEY and NS_CPCODE in the script). It uses [Mocha](https://mochajs.org/) for the test:
@@ -121,14 +118,14 @@ $ mocha --no-timeouts test_netstorage.js
 
 15 passing (..s)
 ```
-  
-  
+
+
 Author
 ------
 
 Astin Choi (achoi@akamai.com)  
-  
-  
+
+
 License
 -------
 
