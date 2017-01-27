@@ -108,7 +108,7 @@ $ mocha --no-timeouts test_netstorage.js
   ns.delete("/407617/nst_1485516660306/nst_1485516660306.txt_lnk", callback);
     ✓ should return 200 OK
   ns.rmdir("/407617/nst_1485516660306", callback);
-    ✓ should return 200
+    ✓ should return 200 OK
 
 ### Error test ###
   ns.dir('invalid ns path', callback);

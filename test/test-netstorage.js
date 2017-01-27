@@ -161,7 +161,7 @@ describe('### Netstorage test ###', function() {
   })
 
   describe(`ns.rmdir("${temp_ns_dir}", callback);`, function() {
-    it('should return 200', function(done) {
+    it('should return 200 OK', function(done) {
       ns.rmdir(temp_ns_dir, (error, response, body) => {
         expect(response.statusCode).to.equal(200)
         done()
