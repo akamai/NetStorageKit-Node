@@ -58,7 +58,7 @@ Methods
 > ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback);
 > ns.du(NETSTORAGE_PATH, callback);
 > ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback);
-> ns.mtime(NETSTORAGE_PATH, new Date.now(), callback);
+> ns.mtime(NETSTORAGE_PATH, Math.floor(Date.now()/1000), callback);
 > ns.quick_delete(NETSTORAGE_DIR, callback); // needs to be enabled on the CP Code
 > ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback);
 > ns.rmdir(NETSTORAGE_DIR, callback); // remove empty direcoty
