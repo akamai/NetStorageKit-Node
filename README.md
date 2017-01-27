@@ -39,7 +39,7 @@ Example
 ...  }
 ...  if (response.statusCode == 200) { // http response codes: 2xx, 3xx, 4xx, 5xx
 ...     // do something
-...     // body returns json type {}
+...     // body: json type {}
 ...  }
 ... });
 >
