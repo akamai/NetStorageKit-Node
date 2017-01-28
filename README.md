@@ -30,14 +30,14 @@ Example
 > // Don't expose KEY on your public repository.
 > // Default SSL value is FALSE
 > var ns = new Netstorage(config);
-> local_source = 'hello.txt'
-> netstorage_destination = `/${config.cpCode}/hello.txt` // or `/${config.cpCode}/` is same.
+> var local_source = 'hello.txt'
+> var netstorage_destination = `/${config.cpCode}/hello.txt` // or `/${config.cpCode}/` is same.
 >
 > ns.upload(local_source, netstorage_destination, (error, response, body) => {
 ...  if (error) { // errors other than http response codes
 ...     console.log(`Got error: ${error.message}`);
 ...  }
-...  if (response.statusCode == 200) { // http response codes: 2xx, 3xx, 4xx, 5xx
+...  if (response.statusCode == 200) {
 ...     // do something
 ...     // body: json type {}
 ...  }
@@ -74,13 +74,14 @@ Methods
 
 Test
 ----
-You can test all above methods with [Unit Test Script](https://github.com/AstinCHOI/NetStorageKit-Node/blob/master/test_netstorage.js) (NOTE: You should input NS_HOSTNAME, NS_KEYNAME, NS_KEY and NS_CPCODE in the script). It uses [Mocha](https://mochajs.org/) for the test:
+You can test all above methods with [Unit Test Script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). you should configure [api-config.json](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example) for the test. It uses [Mocha](https://mochajs.org/) for the test:
 
 
 ```bash
 $ npm install --global mocha
 ...
-$ mocha --no-timeouts test_netstorage.js
+$ export TEST_MODE=LOCAL # use test/api-config.json
+$ mocha --no-timeouts test/test_netstorage.js
 
 ### Netstorage test ###
   ns.dir("/407617", callback);

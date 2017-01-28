@@ -14,11 +14,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-const assert = require('assert')
+'use strict'
+const expect = require('chai').expect
 const fs = require('fs')
 const Netstorage = require('../lib/netstorage')
-const expect = require('chai').expect
+
 var config = {}
 if (process.env.TEST_MODE === 'LOCAL') {
   config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
