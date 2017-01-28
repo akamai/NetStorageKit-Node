@@ -74,7 +74,7 @@ Methods
 
 Test
 ----
-You can test all above methods with [Unit Test Script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). you should configure [api-config.json](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example) for the test. It uses [Mocha](https://mochajs.org/) for the test:
+You can test all above methods with [Unit Test Script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). you should configure [api-config.json](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example). It uses [Mocha](https://mochajs.org/) for the test:
 
 
 ```bash
