@@ -1,6 +1,6 @@
 {
   "name": "netstorageapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Akamai Netstorage API for Node.js",
   "main": "./lib/netstorage.js",
   "scripts": {

@@ -29,20 +29,20 @@ Example
 > const config = { hostname: 'astinobj-nsu.akamaihd.net', keyName: 'astinobj', key: 'xxxxxxxxxx', cpCode: '407617', ssl: false }
 > // Don't expose KEY on your public repository.
 > // Default SSL value is FALSE
-> var ns = new Netstorage(config);
+> var ns = new Netstorage(config)
 > var local_source = 'hello.txt'
 > var netstorage_destination = `/${config.cpCode}/hello.txt` // or `/${config.cpCode}/` is same.
 >
 > ns.upload(local_source, netstorage_destination, (error, response, body) => {
 ...  if (error) { // errors other than http response codes
-...     console.log(`Got error: ${error.message}`);
+...     console.log(`Got error: ${error.message}`)
 ...  }
 ...  if (response.statusCode == 200) {
-...     // do something
-...     // body: json type {}
+...     console.log(body)
 ...  }
 ... });
->
+{ message: 'Request Processed.' }
+> 
 ```
 
 
