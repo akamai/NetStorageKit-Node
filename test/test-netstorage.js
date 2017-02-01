@@ -55,9 +55,9 @@ describe('### Netstorage test ###', function() {
     })
   })
 
-  describe(`ns.list("/${config.cpCode}", { "max_entries": 5 }, callback);`, function() {
+  describe(`ns.list({ path: "/${config.cpCode}", actions: { "max_entries": 5 } }, callback);`, function() {
     it('should return 200 OK', function(done) {
-      ns.list(`/${config.cpCode}`, { 'max_entries': 5 }, (error, response, body) => {
+      ns.list({ path: `/${config.cpCode}`, actions: { max_entries: 5 } }, (error, response, body) => {
         expect(response.statusCode).to.equal(200)
         expect(body.list.file.length).to.equal(5)
         done()
@@ -185,9 +185,9 @@ describe('### Error test ###', function() {
     })
   })
 
-  describe(`ns.list('invalid ns path', { "max_entries": 5 }, callback);`, function() {
+  describe('ns.list({ path: "INVALID NS PATH", actions: { max_entries: 5 } }, callback)', function() {
     it('should get Error object', function(done) {
-      ns.list('Invalid ns path', { 'max_entries': 5 }, (error, response, body) => {
+      ns.list({ path: "INVALID NS PATH", actions: { max_entries: 5 } }, (error, response, body) => {
         if (error) {
           expect(error).to.be.instanceof(Error)
           expect(error.message).to.equal('[Netstorage Error] Invalid netstorage path')
@@ -197,12 +197,12 @@ describe('### Error test ###', function() {
     })
   })
 
-  describe(`ns.list("/${config.cpCode}", { badObj: true }, callback);`, function() {
+  describe(`ns.list({ path: "/${config.cpCode}" }, callback);`, function() {
     it('should get Error object', function(done) {
-      ns.list(`/${config.cpCode}`, { 'max_entries': 5 }, (error, response, body) => {
+      ns.list({ path: `/${config.cpCode}` }, (error, response, body) => {
         if (error) {
           expect(error).to.be.instanceof(Error)
-          expect(error.message).to.equal('[Netstorage Error] Invalid netstorage path')
+          expect(error.message).to.equal('[Netstorage Error] If an options object is passed, it must contain an "actions" object with key/value pairs for each action option')
         }
         done()
       })
