@@ -53,8 +53,8 @@ Methods
 > function callback(error, response, body) { /* do something */ }
 >
 > ns.delete(NETSTORAGE_PATH, callback);
-> ns.dir(NETSTORAGE_PATH, callback);
-> ns.list(NETSTORAGE_PATH, ACTIONS_OBJ, callback);
+> ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback); // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
+> ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback); // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
 > ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback);
 > ns.du(NETSTORAGE_PATH, callback);
 > ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback);
