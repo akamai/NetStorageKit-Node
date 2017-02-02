@@ -9,12 +9,12 @@
 NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js 4.0+ with native [http module](https://nodejs.org/api/http.html).
 
 # Table of Contents
-* [Installation](#Installation)
-* [Example](#Example)
-* [Methods](#Methods)
-* [Testing](#Testing)
-* [Author](#Author)
-* [License](#License)
+* [Installation](#installation)
+* [Example](#example)
+* [Methods](#methods)
+* [Testing](#testing)
+* [Author](#author)
+* [License](#license)
 
 # Installation
 
