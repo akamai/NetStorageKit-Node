@@ -27,7 +27,13 @@ Example
 const Netstorage = require('netstorageapi')
 
 // Defaults: SSL: false
-const config = { hostname: 'astinobj-nsu.akamaihd.net', keyName: 'astinobj', key: 'xxxxxxxxxx', cpCode: '407617', ssl: true }
+const config = {
+  hostname: 'astinobj-nsu.akamaihd.net',
+  keyName: 'astinobj',
+  key: 'xxxxxxxxxx',
+  cpCode: '407617',
+  ssl: true
+}
 // Don't expose KEY on your public repository.
 
 const ns = new Netstorage(config)
@@ -51,6 +57,23 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
 
 Methods
 -------
+| Table of Contents |
+| --- |
+| [delete](#delete) |
+| [dir](#dir) |
+| [list](#list) |
+| [download](#download) |
+| [du](#du) |
+| [mkdir](#mkdir) |
+| [mtime](#mtime) |
+| [quick_delete](#quick_delete) |
+| [rename](#rename) |
+| [rmdir](#rmdir) |
+| [stat](#stat) |
+| [symlink](#symlink) |
+| [upload](#upload) |
+
+
 
 ### delete
 - **Description**:
