@@ -78,10 +78,9 @@ You can test all above methods with [Unit Test Script](https://github.com/akamai
 
 
 ```bash
-$ npm install --global mocha
-...
+$ npm install
 $ export TEST_MODE=LOCAL # use test/api-config.json
-$ mocha --no-timeouts test/test_netstorage.js
+$ npm test
 
 ### Netstorage test ###
   ns.dir("/407617", callback);
