@@ -89,7 +89,7 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
 * [upload](#upload)
 
 ### delete
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript 
@@ -102,7 +102,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### dir
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**:
 ```Javascript
@@ -115,7 +115,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### list
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -128,7 +128,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### download
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -140,7 +140,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| :---------- | :---------: | :------------------------------ |
 
 ### du
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -153,7 +153,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### mkdir
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -166,7 +166,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 
 ### mtime
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -179,7 +179,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### quick_delete
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -192,7 +192,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_DIR` | string | full path to the directory/object |
 
 ### rename
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -206,7 +206,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_DESTINATION` | string | full path to the renamed file/directory/object |
 
 ### rmdir
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -219,7 +219,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_DIR` | string | full path to the directory/object |
 
 ### stat
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -232,7 +232,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### symlink
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -245,7 +245,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 
 ### upload
-######*[^ to table of contents](#methods)*
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
