@@ -23,7 +23,7 @@ $ npm install --save netstorageapi
 Example
 -------
 
-```javascript
+````Javascript
 const Netstorage = require('netstorageapi')
 
 // Defaults: SSL: false
@@ -46,94 +46,157 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
 }); 
 
 { message: 'Request Processed.' }
-```
+````
 
 
 Methods
 -------
 
 ### delete
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.delete(NETSTORAGE_PATH, callback)
+	ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### dir
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
+	ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body)) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### list
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
+	ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body)) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### download
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback)
+	ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
 
 ### du
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.du(NETSTORAGE_PATH, callback)
+	ns.du(NETSTORAGE_PATH, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### mkdir
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback)
+	ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### mtime
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.mtime(NETSTORAGE_PATH, Math.floor(Date.now()/1000), callback)
+	ns.mtime(NETSTORAGE_PATH, Math.floor(Date.now()/1000), callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### quick_delete
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.quick_delete(NETSTORAGE_DIR, callback) // needs to be enabled on the CP Code
+	ns.quick_delete(NETSTORAGE_DIR, callback(err, response, body)) // needs to be enabled on the CP Code
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### rename
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback)
+	ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### rmdir
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.rmdir(NETSTORAGE_DIR, callback) // remove empty direcoty
+	ns.rmdir(NETSTORAGE_DIR, callback(err, response, body)) // remove empty direcoty
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### stat
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.stat(NETSTORAGE_PATH, callback)
+	ns.stat(NETSTORAGE_PATH, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### symlink
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback)
+	ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
 
 ### upload
-- **Syntax**: 
+**Description**:
+**Syntax**: 
 ````Javascript
-	ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback)
+	ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback(err, response, body))
 ````
+**Parameters**:
+| Name        | Type        | Description                     |
+| :---------- | :---------: | :------------------------------ |
+
  
 // INFO: can "upload" Only a single file, not directory.
 // WARN: can raise FILE related error in "download" and "upload",
-//       see error object in callback.
-
+//       see error object in callback(err, response, body).
 
 Test
 ----
