@@ -53,107 +53,107 @@ Methods
 -------
 
 ### delete
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript 
 ns.delete(NETSTORAGE_PATH, callback(err, response, body)) 
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### dir
-*Description*:
-*Syntax*:
+**Description**:
+**Syntax**:
 ```Javascript
 	ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body)) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### list
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body)) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### download
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 
 ### du
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.du(NETSTORAGE_PATH, callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### mkdir
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 
 
 ### mtime
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.mtime(NETSTORAGE_PATH, Math.floor(Date.now()/1000), callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### quick_delete
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.quick_delete(NETSTORAGE_DIR, callback(err, response, body)) // needs to be enabled on the CP Code
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_DIR` | string | full path to the directory/object |
 
 ### rename
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
@@ -161,48 +161,48 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 | `NETSTORAGE_DESTINATION` | string | full path to the renamed file/directory/object |
 
 ### rmdir
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.rmdir(NETSTORAGE_DIR, callback(err, response, body)) // remove empty direcoty
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_DIR` | string | full path to the directory/object |
 
 ### stat
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.stat(NETSTORAGE_PATH, callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 | `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### symlink
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
 
 
 ### upload
-*Description*:
-*Syntax*: 
+**Description**:
+**Syntax**: 
 ```Javascript
 	ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback(err, response, body))
 ```
-*Parameters*:
+**Parameters**:
 
 | Name        | Type        | Description                     |
 | :---------- | :---------: | :------------------------------ |
