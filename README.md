@@ -12,6 +12,19 @@ NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js 4.0+ with
 * [Installation](#installation)
 * [Example](#example)
 * [Methods](#methods)
+  * [delete](#delete)
+  * [dir](#dir)
+  * [list](#list)
+  * [download](#download)
+  * [du](#du)
+  * [mkdir](#mkdir)
+  * [mtime](#mtime)
+  * [quick_delete](#quick_delete)
+  * [rename](#rename)
+  * [rmdir](#rmdir)
+  * [stat](#stat)
+  * [symlink](#symlink)
+  * [upload](#upload)
 * [Testing](#testing)
 * [Author](#author)
 * [License](#license)
@@ -76,6 +89,7 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
 * [upload](#upload)
 
 ### delete
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript 
@@ -88,6 +102,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### dir
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**:
 ```Javascript
@@ -100,6 +115,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### list
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -112,6 +128,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### download
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -123,6 +140,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| :---------- | :---------: | :------------------------------ |
 
 ### du
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -135,6 +153,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### mkdir
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -147,6 +166,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 
 ### mtime
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -159,6 +179,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### quick_delete
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -171,6 +192,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_DIR` | string | full path to the directory/object |
 
 ### rename
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -184,6 +206,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_DESTINATION` | string | full path to the renamed file/directory/object |
 
 ### rmdir
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -196,6 +219,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_DIR` | string | full path to the directory/object |
 
 ### stat
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -208,6 +232,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 	| `NETSTORAGE_PATH` | string | full path to the file/directory/object |
 
 ### symlink
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
@@ -220,6 +245,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 
 ### upload
+######*[^ back to method list](#methods)*
 - **Description**:
 - **Syntax**: 
 ```Javascript
