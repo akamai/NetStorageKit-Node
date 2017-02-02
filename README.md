@@ -1,5 +1,4 @@
 # NetstorageAPI: Akamai Netstorage API for Node.js
-================================================
 
 [![npm package](https://badge.fury.io/js/netstorageapi.svg)](https://badge.fury.io/js/netstorageapi)
 [![Build Status](https://travis-ci.org/akamai-open/NetStorageKit-Node.svg?branch=master)](https://travis-ci.org/akamai-open/NetStorageKit-Node)
@@ -9,9 +8,15 @@
 
 NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js 4.0+ with native [http module](https://nodejs.org/api/http.html).
 
+# Table of Contents
+* [Installation](#Installation)
+* [Example](#Example)
+* [Methods](#Methods)
+* [Testing](#Testing)
+* [Author](#Author)
+* [License](#License)
 
 # Installation
-------------
 
 To install Netstorage API for Node.js:  
 
@@ -21,7 +26,6 @@ $ npm install --save netstorageapi
 
 
 # Example
--------
 
 ```Javascript
 const Netstorage = require('netstorageapi')
@@ -56,24 +60,20 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
 
 
 # Methods
--------
-| Table of Contents |
-| --- |
-| [delete](#delete) |
-| [dir](#dir) |
-| [list](#list) |
-| [download](#download) |
-| [du](#du) |
-| [mkdir](#mkdir) |
-| [mtime](#mtime) |
-| [quick_delete](#quick_delete) |
-| [rename](#rename) |
-| [rmdir](#rmdir) |
-| [stat](#stat) |
-| [symlink](#symlink) |
-| [upload](#upload) |
 
-
+* [delete](#delete)
+* [dir](#dir)
+* [list](#list)
+* [download](#download)
+* [du](#du)
+* [mkdir](#mkdir)
+* [mtime](#mtime)
+* [quick_delete](#quick_delete)
+* [rename](#rename)
+* [rmdir](#rmdir)
+* [stat](#stat)
+* [symlink](#symlink)
+* [upload](#upload)
 
 ### delete
 - **Description**:
@@ -235,8 +235,8 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 // WARN: can raise FILE related error in "download" and "upload",
 //       see error object in callback(err, response, body).
 
-# Test
-----
+# Testing
+
 Unit tests for all of the above methods are executed via the [test script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). Prior to testing, create an api-config.json file in the test directory using the provided [example](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example) for the required values. The excellent [Mocha](https://mochajs.org/) and [ChaiJS](http://chaijs.com) libraries are used for all tests:
 
 
@@ -247,14 +247,11 @@ $ npm test
 ```
 
 
-Author
-------
+# Author
 
 Astin Choi (achoi@akamai.com)  
 
-
-License
--------
+# License
 
 Copyright 2016 Akamai Technologies, Inc.  All rights reserved.
 
