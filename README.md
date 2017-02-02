@@ -24,52 +24,115 @@ Example
 -------
 
 ```javascript
-> const Netstorage = require('netstorageapi')
->
-> const config = { hostname: 'astinobj-nsu.akamaihd.net', keyName: 'astinobj', key: 'xxxxxxxxxx', cpCode: '407617', ssl: false }
-> // Don't expose KEY on your public repository.
-> // Default SSL value is FALSE
-> var ns = new Netstorage(config)
-> var local_source = 'hello.txt'
-> var netstorage_destination = `/${config.cpCode}/hello.txt` // or `/${config.cpCode}/` is same.
->
-> ns.upload(local_source, netstorage_destination, (error, response, body) => {
-...  if (error) { // errors other than http response codes
-...     console.log(`Got error: ${error.message}`)
-...  }
-...  if (response.statusCode == 200) {
-...     console.log(body)
-...  }
-... });
+const Netstorage = require('netstorageapi')
+
+// Defaults: SSL: false
+const config = { hostname: 'astinobj-nsu.akamaihd.net', keyName: 'astinobj', key: 'xxxxxxxxxx', cpCode: '407617', ssl: true }
+// Don't expose KEY on your public repository.
+
+const ns = new Netstorage(config)
+const local_source = 'hello.txt'
+
+// or `/${config.cpCode}/` will asume the destination filename is the same as the source
+const netstorage_destination = `/${config.cpCode}/hello.txt` 
+
+ns.upload(local_source, netstorage_destination, (error, response, body) => {
+  if (error) { // errors other than http response codes
+    console.log(`Got error: ${error.message}`)
+  }
+  if (response.statusCode == 200) {
+    console.log(body)
+  }
+}); 
+
 { message: 'Request Processed.' }
-> 
 ```
 
 
 Methods
 -------
 
-```javascript
-> function callback(error, response, body) { /* do something */ }
->
-> ns.delete(NETSTORAGE_PATH, callback);
-> ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback); // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
-> ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback); // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
-> ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback);
-> ns.du(NETSTORAGE_PATH, callback);
-> ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback);
-> ns.mtime(NETSTORAGE_PATH, Math.floor(Date.now()/1000), callback);
-> ns.quick_delete(NETSTORAGE_DIR, callback); // needs to be enabled on the CP Code
-> ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback);
-> ns.rmdir(NETSTORAGE_DIR, callback); // remove empty direcoty
-> ns.stat(NETSTORAGE_PATH, callback);
-> ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback);
-> ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback);
->  
-> // INFO: can "upload" Only a single file, not directory.
-> // WARN: can raise FILE related error in "download" and "upload",
-> //       see error object in callback.
-```
+### delete
+- **Syntax**: 
+````Javascript
+	ns.delete(NETSTORAGE_PATH, callback)
+````
+
+### dir
+- **Syntax**: 
+````Javascript
+	ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
+````
+
+### list
+- **Syntax**: 
+````Javascript
+	ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
+````
+
+### download
+- **Syntax**: 
+````Javascript
+	ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback)
+````
+
+### du
+- **Syntax**: 
+````Javascript
+	ns.du(NETSTORAGE_PATH, callback)
+````
+
+### mkdir
+- **Syntax**: 
+````Javascript
+	ns.mkdir(`#{NETSTORAGE_PATH}/#{DIRECTORY_NAME}`, callback)
+````
+
+### mtime
+- **Syntax**: 
+````Javascript
+	ns.mtime(NETSTORAGE_PATH, Math.floor(Date.now()/1000), callback)
+````
+
+### quick_delete
+- **Syntax**: 
+````Javascript
+	ns.quick_delete(NETSTORAGE_DIR, callback) // needs to be enabled on the CP Code
+````
+
+### rename
+- **Syntax**: 
+````Javascript
+	ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback)
+````
+
+### rmdir
+- **Syntax**: 
+````Javascript
+	ns.rmdir(NETSTORAGE_DIR, callback) // remove empty direcoty
+````
+
+### stat
+- **Syntax**: 
+````Javascript
+	ns.stat(NETSTORAGE_PATH, callback)
+````
+
+### symlink
+- **Syntax**: 
+````Javascript
+	ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback)
+````
+
+### upload
+- **Syntax**: 
+````Javascript
+	ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback)
+````
+ 
+// INFO: can "upload" Only a single file, not directory.
+// WARN: can raise FILE related error in "download" and "upload",
+//       see error object in callback.
 
 
 Test
@@ -77,7 +140,7 @@ Test
 You can test all above methods with [Unit Test Script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). you should configure [api-config.json](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example). It uses [Mocha](https://mochajs.org/) for the test:
 
 
-```bash
+```Shell
 $ npm install
 $ export TEST_MODE=LOCAL # use test/api-config.json
 $ npm test
