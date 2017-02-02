@@ -27,8 +27,14 @@ Example
 const Netstorage = require('netstorageapi')
 
 // Defaults: SSL: false
-const config = { hostname: 'astinobj-nsu.akamaihd.net', keyName: 'astinobj', key: 'xxxxxxxxxx', cpCode: '407617', ssl: true }
 // Don't expose KEY on your public repository.
+const config = {
+  hostname: 'astinobj-nsu.akamaihd.net',
+  keyName: 'astinobj',
+  key: 'xxxxxxxxxx',
+  cpCode: '407617',
+  ssl: true
+}
 
 const ns = new Netstorage(config)
 const local_source = 'hello.txt'
