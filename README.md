@@ -1,4 +1,4 @@
-NetstorageAPI: Akamai Netstorage API for Node.js
+# NetstorageAPI: Akamai Netstorage API for Node.js
 ================================================
 
 [![npm package](https://badge.fury.io/js/netstorageapi.svg)](https://badge.fury.io/js/netstorageapi)
@@ -10,7 +10,7 @@ NetstorageAPI: Akamai Netstorage API for Node.js
 NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js 4.0+ with native [http module](https://nodejs.org/api/http.html).
 
 
-Installation
+# Installation
 ------------
 
 To install Netstorage API for Node.js:  
@@ -20,7 +20,7 @@ $ npm install --save netstorageapi
 ```
 
 
-Example
+# Example
 -------
 
 ```Javascript
@@ -55,7 +55,7 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
 ```
 
 
-Methods
+# Methods
 -------
 | Table of Contents |
 | --- |
@@ -235,58 +235,15 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 // WARN: can raise FILE related error in "download" and "upload",
 //       see error object in callback(err, response, body).
 
-Test
+# Test
 ----
-You can test all above methods with [Unit Test Script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). you should configure [api-config.json](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example). It uses [Mocha](https://mochajs.org/) for the test:
+Unit tests for all of the above methods are executed via the [test script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). Prior to testing, create an api-config.json file in the test directory using the provided [example](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example) for the required values. The excellent [Mocha](https://mochajs.org/) and [ChaiJS](http://chaijs.com) libraries are used for all tests:
 
 
 ```Shell
 $ npm install
 $ export TEST_MODE=LOCAL # use test/api-config.json
 $ npm test
-
-### Netstorage test ###
-  ns.dir("/407617", callback);
-    ✓ should return 200 OK
-  ns.list("/407617", { "max_entries": 5 }, callback);
-    ✓ should return 200 OK
-  ns.mkdir("/407617/nst_1485516660306", callback);
-    ✓ should return 200 OK
-  ns.upload("/Users/achoi/Projects/NetStorageKit-Node/test/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt", callback);
-    ✓ should return 200 OK
-  ns.du("/407617/nst_1485516660306", callback);
-    ✓ should return 200 OK
-  ns.mtime("/407617/nst_1485516660306/nst_1485516660306.txt", 1485516660, callback);
-    ✓ should return 200 OK
-  ns.stat("/407617/nst_1485516660306/nst_1485516660306.txt", callback);
-    ✓ should return 200 OK
-  ns.symlink("/407617/nst_1485516660306/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt_lnk", callback);
-    ✓ should return 200 OK
-  ns.rename("/407617/nst_1485516660306/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
-    ✓ should return 200 OK
-  ns.download("/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
-    ✓ should return 200 OK
-  ns.delete("/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
-    ✓ should return 200 OK
-  ns.delete("/407617/nst_1485516660306/nst_1485516660306.txt_lnk", callback);
-    ✓ should return 200 OK
-  ns.rmdir("/407617/nst_1485516660306", callback);
-    ✓ should return 200 OK
-
-### Error test ###
-  ns.dir('invalid ns path', callback);
-    ✓ should get Error object
-  ns.list('invalid ns path', { "max_entries": 5 }, callback);
-    ✓ should get Error object
-  ns.list("/407617", { badObj: true }, callback);
-    ✓ should get Error object
-  ns.upload("invalid local path", "/407617/nst_1485516660306/nst_1485516660306.txt" callback);
-    ✓ should get Error object
-  ns.download("/123456/directory/", "/Users/achoi/Projects/NetStorageKit-Node/test/nst_1485516660306.txt" callback);
-    ✓ should get Error object
-
-
-18 passing (..s)
 ```
 
 
