@@ -27,14 +27,8 @@ Example
 const Netstorage = require('netstorageapi')
 
 // Defaults: SSL: false
+const config = { hostname: 'astinobj-nsu.akamaihd.net', keyName: 'astinobj', key: 'xxxxxxxxxx', cpCode: '407617', ssl: true }
 // Don't expose KEY on your public repository.
-const config = {
-  hostname: 'astinobj-nsu.akamaihd.net',
-  keyName: 'astinobj',
-  key: 'xxxxxxxxxx',
-  cpCode: '407617',
-  ssl: true
-}
 
 const ns = new Netstorage(config)
 const local_source = 'hello.txt'
@@ -50,6 +44,8 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
     console.log(body)
   }
 }); 
+
+{ message: 'Request Processed.' }
 ```
 
 
@@ -72,7 +68,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 - **Description**:
 - **Syntax**:
 ```Javascript
-	ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body)) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
+	ns.dir(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body))
 ```
 - **Parameters**:
 
@@ -84,7 +80,7 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 - **Description**:
 - **Syntax**: 
 ```Javascript
-	ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body)) // object should be of the following format. See API documentation for valid action options { path: "yourPath", actions: { action_name: value } }
+	ns.list(NETSTORAGE_PATH|OPTIONS_OBJECT, callback(err, response, body))
 ```
 - **Parameters**:
 
@@ -225,6 +221,49 @@ You can test all above methods with [Unit Test Script](https://github.com/akamai
 $ npm install
 $ export TEST_MODE=LOCAL # use test/api-config.json
 $ npm test
+
+### Netstorage test ###
+  ns.dir("/407617", callback);
+    ✓ should return 200 OK
+  ns.list("/407617", { "max_entries": 5 }, callback);
+    ✓ should return 200 OK
+  ns.mkdir("/407617/nst_1485516660306", callback);
+    ✓ should return 200 OK
+  ns.upload("/Users/achoi/Projects/NetStorageKit-Node/test/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt", callback);
+    ✓ should return 200 OK
+  ns.du("/407617/nst_1485516660306", callback);
+    ✓ should return 200 OK
+  ns.mtime("/407617/nst_1485516660306/nst_1485516660306.txt", 1485516660, callback);
+    ✓ should return 200 OK
+  ns.stat("/407617/nst_1485516660306/nst_1485516660306.txt", callback);
+    ✓ should return 200 OK
+  ns.symlink("/407617/nst_1485516660306/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt_lnk", callback);
+    ✓ should return 200 OK
+  ns.rename("/407617/nst_1485516660306/nst_1485516660306.txt", "/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
+    ✓ should return 200 OK
+  ns.download("/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
+    ✓ should return 200 OK
+  ns.delete("/407617/nst_1485516660306/nst_1485516660306.txt_rename", callback);
+    ✓ should return 200 OK
+  ns.delete("/407617/nst_1485516660306/nst_1485516660306.txt_lnk", callback);
+    ✓ should return 200 OK
+  ns.rmdir("/407617/nst_1485516660306", callback);
+    ✓ should return 200 OK
+
+### Error test ###
+  ns.dir('invalid ns path', callback);
+    ✓ should get Error object
+  ns.list('invalid ns path', { "max_entries": 5 }, callback);
+    ✓ should get Error object
+  ns.list("/407617", { badObj: true }, callback);
+    ✓ should get Error object
+  ns.upload("invalid local path", "/407617/nst_1485516660306/nst_1485516660306.txt" callback);
+    ✓ should get Error object
+  ns.download("/123456/directory/", "/Users/achoi/Projects/NetStorageKit-Node/test/nst_1485516660306.txt" callback);
+    ✓ should get Error object
+
+
+18 passing (..s)
 ```
 
 
