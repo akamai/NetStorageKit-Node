@@ -49,19 +49,19 @@ const config = {
   keyName: 'astinobj',
   key: 'xxxxxxxxxx',
   cpCode: '407617',
-  ssl: true
+  ssl: false
 }
 // Don't expose KEY on your public repository.
 
 const ns = new Netstorage(config)
 const local_source = 'hello.txt'
 
-// or \`/${config.cpCode}/\` will asume the destination filename is the same as the source
-const netstorage_destination = \`/${config.cpCode}/hello.txt\`
+// or `/${config.cpCode}/` will asume the destination filename is the same as the source
+const netstorage_destination = `/${config.cpCode}/hello.txt`
 
 ns.upload(local_source, netstorage_destination, (error, response, body) => {
   if (error) { // errors other than http response codes
-    console.log(\`Got error: ${error.message}\`)
+    console.log(`Got error: ${error.message}`)
   }
   if (response.statusCode == 200) {
     console.log(body)
@@ -90,7 +90,6 @@ ns.upload(local_source, netstorage_destination, (error, response, body) => {
 
 ### delete
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript 
 ns.delete(NETSTORAGE_PATH, callback(err, response, body)) 
@@ -99,11 +98,10 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_PATH` | *string* | full path to the file/directory/object |
+	| `NETSTORAGE_PATH` | *string* | full path for the file, not the directory |
 
 ### dir
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**:
 ```Javascript
 	ns.dir(NETSTORAGE_PATH|OPTIONS, callback(err, response, body))
@@ -112,8 +110,8 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_PATH` | *string* | full path to the file/directory/object |
-  | `OPTIONS` | *object* | JSON object containing options for the dir method|
+	| `NETSTORAGE_PATH` | *string* | full path for the directory |
+  | `OPTIONS` | *object* | JSON object containing options for the dir method |
 - **Valid Options**:
 ```Javascript
   { path: '/your/path', 
@@ -129,7 +127,6 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 ### list
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.list(NETSTORAGE_PATH|OPTIONS, callback(err, response, body))
@@ -138,8 +135,8 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_PATH` | *string* | full path to the file/directory/object |
-  | `OPTIONS` | *object* | JSON object containing options for the dir method|
+	| `NETSTORAGE_PATH` | *string* | full path to the file/directory |
+  | `OPTIONS` | *object* | JSON object containing options for the dir method |
 - **Valid Options**:
 ```Javascript
   { path: '/your/path', 
@@ -152,7 +149,6 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 ### download
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback(err, response, body))
@@ -161,12 +157,11 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-  | `NETSTORAGE_SOURCE` | *string* | Path to file or object in NetStorage |
+  | `NETSTORAGE_SOURCE` | *string* | Path to the file in NetStorage |
   | `LOCAL_DESTINATION` | *string* | Location on the local host to write the downloaded file to | 
 
 ### du
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.du(NETSTORAGE_PATH, callback(err, response, body))
@@ -175,11 +170,10 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_PATH` | *string* | full path to the file/directory/object |
+	| `NETSTORAGE_PATH` | *string* | full path to the file/directory |
 
 ### mkdir
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.mkdir(DIRECTORY_NAME, callback(err, response, body))
@@ -192,21 +186,19 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 ### mtime
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
-	ns.mtime(NETSTORAGE_PATH, UNX_TIME, callback(err, response, body))
+	ns.mtime(NETSTORAGE_PATH, UNIX_TIME, callback(err, response, body))
 ```
 - **Parameters**:
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_PATH` | *string* | full path to the file/directory/object |
-  | `UNX_TIME` | integer | Unix time to set the mtime of the file to. Note that millisecond accuracy is not supported |
+	| `NETSTORAGE_PATH` | *string* | full path to the file/directory |
+  | `UNIX_TIME` | integer | Unix time to set the mtime of the file to. Note that millisecond accuracy is not supported |
 
 ### quick_delete
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.quick_delete(NETSTORAGE_DIR, callback(err, response, body)) // needs to be enabled on the CP Code
@@ -215,11 +207,10 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_DIR` | *string* | full path to the directory/object you wish to delete|
+	| `NETSTORAGE_DIR` | *string* | full path to the directory you wish to delete|
 
 ### rename
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.rename(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback(err, response, body))
@@ -228,25 +219,23 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_TARGET` | *string* | full path to the original file/directory/object |
-	| `NETSTORAGE_DESTINATION` | *string* | full path to the renamed file/directory/object |
+	| `NETSTORAGE_TARGET` | *string* | full path to the original file/directory |
+	| `NETSTORAGE_DESTINATION` | *string* | full path to the renamed file/directory |
 
 ### rmdir
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
-	ns.rmdir(NETSTORAGE_DIR, callback(err, response, body)) // remove empty direcoty
+	ns.rmdir(NETSTORAGE_DIR, callback(err, response, body))
 ```
 - **Parameters**:
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_DIR` | *string* | full path to the directory/object you wish to delete |
+	| `NETSTORAGE_DIR` | *string* | full path to the empty object you wish to delete |
 
 ### stat
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.stat(NETSTORAGE_PATH, callback(err, response, body))
@@ -255,11 +244,10 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-	| `NETSTORAGE_PATH` | *string* | full path to the file/directory/object you wish to stat |
+	| `NETSTORAGE_PATH` | *string* | full path to the file/directory you wish to stat |
 
 ### symlink
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback(err, response, body))
@@ -273,7 +261,6 @@ ns.delete(NETSTORAGE_PATH, callback(err, response, body))
 
 ### upload
 ######*[^ back to method list](#methods)*
-- **Description**:
 - **Syntax**: 
 ```Javascript
 	ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback(err, response, body))
