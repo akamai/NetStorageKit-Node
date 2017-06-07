@@ -24,6 +24,7 @@ install:
     npm install --global mocha
 
 script:
+  - export TEST_MODE=TRAVIS
   - export NS_HOST=$NS_HOST
   - export NS_KEYNAME=$NS_KEYNAME
   - export NS_KEY=$NS_KEY

@@ -279,8 +279,7 @@ Unit tests for all of the above methods are executed via the [test script](https
 
 ```Shell
 $ npm install
-$ export TEST_MODE=LOCAL # use test/api-config.json
-$ npm test
+$ npm test # use test/api-config.json
 ```
 
 

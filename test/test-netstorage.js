@@ -20,10 +20,14 @@ const fs = require('fs')
 const Netstorage = require('../lib/netstorage')
 
 var config = {}
-if (process.env.TEST_MODE === 'LOCAL') {
-  config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
+if (process.env.TEST_MODE === 'TRAVIS') {
+  config = { hostname: process.env.NS_HOST, 
+    keyName: process.env.NS_KEYNAME, 
+    key: process.env.NS_KEY, 
+    cpCode: process.env.NS_CPCODE , 
+    ssl: false }
 } else {
-  config = { hostname: process.env.NS_HOST, keyName: process.env.NS_KEYNAME, key: process.env.NS_KEY, cpCode: process.env.NS_CPCODE , ssl: false }
+  config = JSON.parse(fs.readFileSync(__dirname + '/api-config.json'))
 }
 
 var ns = new Netstorage(config)
