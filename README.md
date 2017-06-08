@@ -136,7 +136,7 @@ ns.list(NETSTORAGE_PATH|OPTIONS, callback(err, response, body))
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
 	| `NETSTORAGE_PATH` | *string* | full path to the file/directory |
-  | `OPTIONS` | *object* | JSON object containing options for the dir method |
+  | `OPTIONS` | *object* | JSON object containing options for the list method |
 - **Valid Options**:
 ```Javascript
   { path: '/your/path', 
@@ -158,7 +158,7 @@ ns.download(NETSTORAGE_SOURCE, LOCAL_DESTINATION, callback(err, response, body))
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
   | `NETSTORAGE_SOURCE` | *string* | Path to the file in NetStorage |
-  | `LOCAL_DESTINATION` | *string* | Location on the local host to write the downloaded file to | 
+  | `LOCAL_DESTINATION` | *string* | Location on the local host to write the downloaded file to (Optional value) | 
 
 ### du
 *[↑ back to method list](#methods)*
