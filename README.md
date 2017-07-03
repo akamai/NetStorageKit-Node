@@ -1,8 +1,8 @@
 # NetstorageAPI: Akamai Netstorage API for Node.js
 
 [![npm package](https://badge.fury.io/js/netstorageapi.svg)](https://badge.fury.io/js/netstorageapi)
-[![Build Status](https://travis-ci.org/akamai-open/NetStorageKit-Node.svg?branch=master)](https://travis-ci.org/akamai-open/NetStorageKit-Node)
-[![License](http://img.shields.io/:license-apache-blue.svg)](https://github.com/akamai-open/NetStorageKit-Node/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/akamai/NetStorageKit-Node.svg?branch=master)](https://travis-ci.org/akamai/NetStorageKit-Node)
+[![License](http://img.shields.io/:license-apache-blue.svg)](https://github.com/akamai/NetStorageKit-Node/blob/master/LICENSE)
 
 [![npm package](https://nodei.co/npm/netstorageapi.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/netstorageapi/)
 
@@ -274,7 +274,7 @@ ns.upload(LOCAL_SOURCE, NETSTORAGE_DESTINATION, callback(err, response, body))
 
 # Testing
 
-Unit tests for all of the above methods are executed via the [test script](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/test-netstorage.js). Prior to testing, create an api-config.json file in the test directory using the provided [example](https://github.com/akamai-open/NetStorageKit-Node/blob/master/test/api-config.json.example) for the required values. The excellent [Mocha](https://mochajs.org/) and [ChaiJS](http://chaijs.com) libraries are used for all tests:
+Unit tests for all of the above methods are executed via the [test script](https://github.com/akamai/NetStorageKit-Node/blob/master/test/test-netstorage.js). Prior to testing, create an api-config.json file in the test directory using the provided [example](https://github.com/akamai/NetStorageKit-Node/blob/master/test/api-config.json.example) for the required values. The excellent [Mocha](https://mochajs.org/) and [ChaiJS](http://chaijs.com) libraries are used for all tests:
 
 
 ```Shell
