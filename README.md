@@ -31,12 +31,16 @@ NetstorageAPI is Akamai Netstorage (File/Object Store) API for Node.js 4.0+ with
 
 # Installation
 
-To install Netstorage API for Node.js:  
+To install Netstorage API with npm global:  
 
+```Shell
+$ npm install --global netstorageapi
+```
+
+or as a development dependency for your project:
 ```Shell
 $ npm install --save netstorageapi
 ```
-
 
 # Example
 
@@ -278,7 +282,7 @@ Unit tests for all of the above methods are executed via the [test script](https
 
 
 ```Shell
-$ npm install
+$ npm install --global mocha chai
 $ npm test # use test/api-config.json
 ```
 
