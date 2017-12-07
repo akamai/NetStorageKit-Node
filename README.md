@@ -254,14 +254,14 @@ ns.stat(NETSTORAGE_PATH, callback(err, response, body))
 *[↑ back to method list](#methods)*
 - **Syntax**: 
 ```Javascript
-ns.symlink(NETSTORAGE_TARGET, NETSTORAGE_DESTINATION, callback(err, response, body))
+ns.symlink(NETSTORAGE_SOURCE, NETSTORAGE_TARGET, callback(err, response, body))
 ```
 - **Parameters**:
 
 	| Name        | Type        | Description                     |
 	| :---------- | :---------: | :------------------------------ |
-  | `NETSTORAGE_TARGET` | *string* | full path of the symlink to create |
-  | `NETSTORAGE_DESTINATION` | *string* | full path to file to symlink to |
+  | `NETSTORAGE_SOURCE` | *string* | full path to the original file |
+  | `NETSTORAGE_TARGET` | *string* | full path of the new symlinked file to create |
 
 ### upload
 *[↑ back to method list](#methods)*
