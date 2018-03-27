@@ -4,7 +4,7 @@
   "description": "Akamai Netstorage API for Node.js",
   "main": "./lib/netstorage.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter spec --no-timeouts --ui bdd test/test-*"
+    "test": "mocha --reporter spec --no-timeouts --ui bdd test/test-*"
   },
   "pre-commit": [
     "test"
