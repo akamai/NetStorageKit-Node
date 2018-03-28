@@ -29,6 +29,7 @@
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
+    "https-proxy-agent": "^2.1.1",
     "lodash": "^4.17.4",
     "xml2js": "^0.4.17"
   }
