@@ -48,12 +48,14 @@ $ npm install --save netstorageapi
 const Netstorage = require('netstorageapi')
 
 // Defaults: SSL: false
+// By default no proxy is set
 const config = {
   hostname: 'astinobj-nsu.akamaihd.net',
   keyName: 'astinobj',
   key: 'xxxxxxxxxx',
   cpCode: '407617',
-  ssl: false
+  ssl: false,
+  proxy: 'https://yourproxyurl.com:port'
 }
 // Don't expose KEY on your public repository.
 
