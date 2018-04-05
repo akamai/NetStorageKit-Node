@@ -55,7 +55,7 @@ const config = {
   key: 'xxxxxxxxxx',
   cpCode: '407617',
   ssl: false,
-  proxy: 'https://yourproxyurl.com:port'
+  // proxy: 'https://yourproxyurl.com:port' // Optional
 }
 // Don't expose KEY on your public repository.
 
