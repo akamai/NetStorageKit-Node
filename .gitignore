@@ -37,6 +37,7 @@ jspm_packages
 .node_repl_history
 
 # Others
+package-lock.json
 .DS_Store
 spike/
 
