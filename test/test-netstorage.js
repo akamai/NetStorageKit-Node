@@ -87,6 +87,16 @@ describe('### Netstorage test ###', function() {
         done()
       })
     })
+
+    it('should return 200 OK for large files (6mb+)', function (done) {
+      const sixMegsPlusOne = new Array(6 * 1024 * 1024 + 1).fill('a').join('')
+      fs.writeFileSync(`${__dirname}/${temp_file}`, sixMegsPlusOne)
+      ns.upload(`${__dirname}/${temp_file}`, temp_ns_file, (error, response, body) => {
+        if (error) { throw error }
+        expect(response.statusCode).to.equal(200)
+        done()
+      })
+    })
   })
 
   describe(`ns.du("${temp_ns_dir}", callback);`, function() {
