@@ -1,6 +1,6 @@
 {
   "name": "netstorageapi",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "Akamai Netstorage API for Node.js",
   "main": "./lib/netstorage.js",
   "scripts": {
@@ -24,13 +24,13 @@
   "author": "Astin Choi <asciineo@gmail.com>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "chai": "^6.0.1",
-    "mocha": "^11.7.1",
-    "pre-commit": "^1.2.2"
+    "chai": "^6.2.2",
+    "mocha": "^11.3.0",
+    "pre-commit": "^2.0.0"
   },
   "dependencies": {
-    "https-proxy-agent": "^7.0.6",
-    "lodash": "^4.17.21",
+    "https-proxy-agent": "^9.1.0",
+    "lodash": "^4.18.1",
     "xml2js": "^0.6.2"
   }
 }
