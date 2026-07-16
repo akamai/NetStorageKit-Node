@@ -24,14 +24,13 @@
   "author": "Astin Choi <asciineo@gmail.com>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
+    "chai": "^6.0.1",
+    "mocha": "^11.7.1",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "https-proxy-agent": "^2.1.1",
-    "lodash": "^4.17.4",
-    "xml2js": "^0.4.17",
-    "http-proxy-agent": "^2.1.0"
+    "https-proxy-agent": "^7.0.6",
+    "lodash": "^4.17.21",
+    "xml2js": "^0.6.2"
   }
 }
